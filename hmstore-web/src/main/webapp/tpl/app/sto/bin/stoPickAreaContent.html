@@ -1,0 +1,54 @@
+<div class="padder" style="margin-right: -15px;" >
+    <div>
+      <form class="form-horizontal ng-pristine ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled ng-invalid ng-invalid-required" ng-submit="savePickarea()">
+        <div class="wrapper bg b-b" style="margin-bottom: 10px">
+            <h4 class="m-n font-thin">分区详情</h4>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">代码</label>
+            <div class="col-sm-10">
+                <input maxlength="10" type="text" class="form-control" ng-model="currentPickarea.code" pattern="^[a-zA-Z0-9]+[\s]*$" title="请输入英文或者数字" required>
+            </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-10">
+                <input maxlength="20" type="text" class="form-control" ng-model="currentPickarea.name" required>
+            </div>
+        </div>
+        <div class="line line-dashed b-b line-lg pull-in"></div>
+        <div class="m-t m-b">
+            <button type="button" class="btn btn-danger btn-rounded" ng-click="deleteCurrentPickarea()">删除分区</button>
+            <button type="button" class="btn btn-default btn-rounded" ng-click="isCollapsedSecondary = !isCollapsedSecondary">新增区段</button>
+            <button type="submit" class="btn btn-success pull-right" style="margin-right: 20px;" >保存分区</button>
+        </div>
+        </form>
+          <div ng-show="isCollapsedSecondary">
+                <div class="well well-lg">
+                    <form class="form-horizontal ng-pristine ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled ng-invalid ng-invalid-required" ng-submit="addNewCurrentSection()">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">新增区段代码</label>
+                                <div class="col-sm-10">
+                                    <input maxlength="10" type="text" class="form-control" ng-model="newSection.nodeCode" pattern="^[a-zA-Z0-9]+[\s]*$" title="请输入英文或者数字"  required="">
+                                </div>
+                            </div>
+                            <div class="line line-dashed b-b line-lg pull-in"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">新增区段名称</label>
+                                <div class="col-sm-10">
+                                    <input maxlength="20" type="text" class="form-control " ng-model="newSection.nodeName" required="">
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="panel-footer text-right bg-light lter">
+                            <!-- ngIf: edit_mode -->
+                            <button  type="submit" class="btn btn-primary">提交</button>
+                        </footer>
+                    </form>
+                </div>
+            </div>
+
+    </div>
+</div>

@@ -1,0 +1,225 @@
+<!-- list -->
+<ul class="nav" ng-controller="cstcontroller">
+  {{a}}
+ <li ng-repeat="oneMenu in data.obj" class="hidden-folded padder m-t m-b-sm text-muted text-xs" style="padding:0px; ">
+    <span style="padding-left:10px">{{oneMenu.name}}</span>
+   <ul style="padding-left: 0px;font-size: 14px;">
+   <li ng-repeat="twoMenu in oneMenu.sChild" >
+     <a href class="auto" style="padding-top:20px;padding-left:10px;">
+      <span class="pull-right text-muted">
+        <i class="fa fa-fw fa-angle-right text"></i>
+        <i class="fa fa-fw fa-angle-down text-active" ></i>
+       </span>
+       <i class="{{twoMenu.iconClass}}"  style="line-height: 37px;"></i>   <!--图标样式-->
+     <span class="font-bold" >{{twoMenu.name}}</span>
+    </a>
+        <ul class="nav nav-sub dk">
+          <li ng-repeat="threeMenu in twoMenu.sChild" ui-sref-active="active" >
+            <a ui-sref="{{threeMenu.url}}" style="padding-left: 45px;">  <!--url-->
+              <span >{{threeMenu.name}}</span>
+            </a>
+          </li>
+        </ul>
+    </li>
+   </ul>
+ </li>
+  <!--<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">-->
+    <!--<span translate="aside.nav.headquarter.name">总部功能</span>-->
+  <!--</li>-->
+  <!--<li>-->
+
+  <!--<a href class="auto">-->
+      <!--<span class="pull-right text-muted">-->
+        <!--<i class="fa fa-fw fa-angle-right text"></i>-->
+        <!--<i class="fa fa-fw fa-angle-down text-active"></i>-->
+      <!--</span>-->
+      <!--<i class="glyphicon glyphicon-stats icon text-primary-dker"></i>-->
+      <!--<span class="font-bold" translate="aside.nav.headquarter.system.name">系统</span>-->
+    <!--</a>-->
+    <!--<ul class="nav nav-sub dk">-->
+      <!--<li class="nav-sub-header">-->
+        <!--<a href>-->
+          <!--<span translate="aside.nav.headquarter.system.name">系统</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.enterprise.employee.list">-->
+          <!--<span translate="aside.nav.headquarter.system.employee">员工</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.enterprise.role.list">-->
+          <!--<span translate="aside.nav.headquarter.system.role">角色</span>-->
+        <!--</a>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</li>-->
+  <!--<li>-->
+    <!--<a href class="auto">-->
+      <!--<span class="pull-right text-muted">-->
+        <!--<i class="fa fa-fw fa-angle-right text"></i>-->
+        <!--<i class="fa fa-fw fa-angle-down text-active"></i>-->
+      <!--</span>-->
+      <!--<i class="glyphicon glyphicon-edit icon text-info-dker"></i>-->
+      <!--<span class="font-bold" translate="aside.nav.headquarter.material.name">资料</span>-->
+    <!--</a>-->
+    <!--<ul class="nav nav-sub dk">-->
+      <!--<li class="nav-sub-header">-->
+        <!--<a href>-->
+          <!--<span translate="aside.nav.headquarter.material.name">资料</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.enterprise.store.list">-->
+          <!--<span translate="aside.nav.headquarter.material.store">门店</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.store.goods.list">-->
+          <!--<span translate="aside.nav.headquarter.material.goods">商品</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.enterprise.facitemplate.list">-->
+          <!--<span translate="aside.nav.headquarter.material.facilityTemplate">设施模板</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.enterprise.pickschemetemplate.list">-->
+          <!--<span translate="aside.nav.headquarter.material.pickSchemeTemplate">分拣方案模板</span>-->
+        <!--</a>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</li>-->
+  <!--<li>-->
+    <!--<a href class="auto">-->
+      <!--<span class="pull-right text-muted">-->
+        <!--<i class="fa fa-fw fa-angle-right text"></i>-->
+        <!--<i class="fa fa-fw fa-angle-down text-active"></i>-->
+      <!--</span>-->
+      <!--<i class="glyphicon glyphicon-th-large icon text-success"></i>-->
+      <!--<span class="font-bold" translate="aside.nav.headquarter.query.name">查询</span>-->
+    <!--</a>-->
+    <!--<ul class="nav nav-sub dk">-->
+      <!--<li class="nav-sub-header">-->
+        <!--<a href>-->
+          <!--<span translate="aside.nav.headquarter.query.name">查询</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.enterprise.query.labelstatus">-->
+          <!--<span translate="aside.nav.headquarter.query.labelStatus">门店标签状态</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.enterprise.query.orderquery">-->
+          <!--<span translate="aside.nav.headquarter.query.orderQuery">门店拣货情况查询</span>-->
+        <!--</a>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</li>-->
+
+  <!--<li class="line dk"></li>-->
+
+  <!--<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">-->
+    <!--<span translate="aside.nav.store.name">门店功能</span>-->
+  <!--</li>-->
+  <!--<li>-->
+    <!--<a href class="auto">-->
+      <!--<span class="pull-right text-muted">-->
+        <!--<i class="fa fa-fw fa-angle-right text"></i>-->
+        <!--<i class="fa fa-fw fa-angle-down text-active"></i>-->
+      <!--</span>-->
+      <!--<i class="glyphicon glyphicon-edit icon text-info-dker"></i>-->
+      <!--<span class="font-bold" translate="aside.nav.store.material.name">资料</span>-->
+    <!--</a>-->
+    <!--<ul class="nav nav-sub dk">-->
+      <!--<li class="nav-sub-header">-->
+        <!--<a href>-->
+          <!--<span translate="aside.nav.store.material.name">资料</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.store.goods.list">-->
+          <!--<span translate="aside.nav.store.material.goods">商品</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.store.picker.list">-->
+          <!--<span translate="aside.nav.store.material.picker">拣货员</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.store.computer.list">-->
+          <!--<span translate="aside.nav.store.material.computers">门店主机</span>-->
+        <!--</a>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</li>-->
+  <!--<li>-->
+    <!--<a href class="auto">-->
+      <!--<span class="pull-right text-muted">-->
+        <!--<i class="fa fa-fw fa-angle-right text"></i>-->
+        <!--<i class="fa fa-fw fa-angle-down text-active"></i>-->
+      <!--</span>-->
+      <!--<i class="glyphicon glyphicon-stats icon text-primary-dker"></i>-->
+      <!--<span class="font-bold" translate="aside.nav.store.facility.name">设施</span>-->
+    <!--</a>-->
+    <!--<ul class="nav nav-sub dk">-->
+      <!--<li class="nav-sub-header">-->
+        <!--<a href>-->
+          <!--<span translate="aside.nav.store.facility.name">设施</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.store.genfromtemplate">-->
+          <!--<span translate="aside.nav.store.facility.genFromTemplate">从模板生成设施</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.store.label">-->
+          <!--<span translate="aside.nav.store.facility.label">电子标签</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.store.bin">-->
+          <!--<span translate="aside.nav.store.facility.bin">货位</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.store.pickscheme.list">-->
+          <!--<span translate="aside.nav.store.facility.pickScheme">分拣方案</span>-->
+        <!--</a>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</li>-->
+  <!--<li>-->
+    <!--<a href class="auto">-->
+      <!--<span class="pull-right text-muted">-->
+        <!--<i class="fa fa-fw fa-angle-right text"></i>-->
+        <!--<i class="fa fa-fw fa-angle-down text-active"></i>-->
+      <!--</span>-->
+      <!--<i class="glyphicon glyphicon-th-large icon text-success"></i>-->
+      <!--<span class="font-bold" translate="aside.nav.store.query.name">查询</span>-->
+    <!--</a>-->
+    <!--<ul class="nav nav-sub dk">-->
+      <!--<li class="nav-sub-header">-->
+        <!--<a href>-->
+          <!--<span translate="aside.nav.store.query.name">查询</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.store.query.labelstatus">-->
+          <!--<span translate="aside.nav.store.query.labelStatus">门店标签状态</span>-->
+        <!--</a>-->
+      <!--</li>-->
+      <!--<li ui-sref-active="active">-->
+        <!--<a ui-sref="app.store.query.orderquery">-->
+          <!--<span translate="aside.nav.store.query.orderQuery">门店拣货情况查询</span>-->
+        <!--</a>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</li>-->
+
+</ul>
+<!-- / list -->

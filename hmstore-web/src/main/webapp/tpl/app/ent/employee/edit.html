@@ -1,0 +1,73 @@
+<div class="wrapper-md" ng-controller="EmployeeEditController">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <ul class="nav nav-pills pull-right">
+            <li style=" padding-top:4px; padding-right:4px"><button class="btn m-b-xs btn-sm btn-default btn-addon" ui-sref="app.enterprise.employee.list()"><i class="fa fa-list"></i>返回列表</button></li>
+        </ul>
+      <span ng-switch on="edit_mode">
+        <span ng-switch-when="true">编辑员工</span>
+        <span ng-switch-when="false">新增员工</span>
+      </span>
+    </div>
+
+    <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" ng-submit="submit()">
+        <div class="panel-body">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">登录名</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="data.code" maxlength="50" pattern="^[a-zA-Z0-9]+[\s]*$" title="请输入英文或者数字" required autofocus>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">姓名</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="data.name" maxlength="50" required>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">密码</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" ng-model="data.password" maxlength="100" required>
+              </div>
+            </div>
+            <!-- <div class="form-group">
+              <label class="col-sm-2 control-label">确认密码</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" ng-model="data.password2" maxlength="100" required>
+              </div>
+            </div> -->
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">联系电话</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="data.mobile" pattern="^[0-9]+$" title="请输入数字" maxlength="40" required>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">所属组织</label>
+                <div class="col-sm-10">
+                  <select ui-jq="chosen" class="form-control" ng-model="data.org.uuid">
+                    <option ng-repeat="org in orgs" value="{{org.uuid}}">{{org.toString()}}</option>
+                  </select>
+                </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">所属角色</label>
+                <div class="col-sm-10">
+                  <select ui-jq="chosen" multiple class="form-control" ng-model="data.roleUuids" >
+                    <option ng-repeat="role in roles" value="{{role.uuid}}">{{role.toString()}}</option>
+                  </select>
+                </div>
+            </div>
+        </div>
+        <footer class="panel-footer text-right bg-light lter">
+            <input type="button" ng-click="delete()" ng-if="edit_mode" class="btn btn-danger pull-left" value="删除"/>
+            <input type="submit" class="btn btn-success" value="提交"/>
+         </footer>
+     </form>
+  </div>
+</div>

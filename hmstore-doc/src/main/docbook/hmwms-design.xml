@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+  <info>
+    <title>盒马外卖门店系统 - 系统设计</title>
+    <revhistory>
+      <revision>
+        <revnumber>0.1</revnumber>  
+        <date>2016-06-15</date>
+        <author>
+          <personname>xiepingping</personname>
+          <email>xiepingping@hd123.com</email>
+        </author>
+      </revision>
+    </revhistory>
+  </info>
+
+  <part label="I 基本资料">
+    <xi:include href="material/article/hmwms-material-article.xml" />
+    <xi:include href="material/store/hmwms-material-store.xml" />
+    <xi:include href="material/storehost/hmwms-material-storehost.xml" />
+  </part>
+
+  <part label="Ⅱ 系统资料">
+    <xi:include href="system/employee/hmwms-system-employee.xml" />
+    <xi:include href="system/enterprise/hmwms-system-enterprise.xml" />
+    <xi:include href="system/permission/hmwms-system-permission.xml" />
+    <xi:include href="system/role/hmwms-system-role.xml" />
+  </part>
+
+  <part label="Ⅲ 门店设施">
+    <xi:include href="facility/gateway/hmwms-facility-gateway.xml" />
+    <xi:include href="facility/jobpoint/hmwms-facility-jobpoint.xml" />
+    <xi:include href="facility/pickscheme/hmwms-facility-pickscheme.xml" />
+    <xi:include href="facility/template/hmwms-facility-template.xml" />
+  </part>
+</book>

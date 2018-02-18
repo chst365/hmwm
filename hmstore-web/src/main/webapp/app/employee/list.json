@@ -1,0 +1,53 @@
+{
+	"previous": false,
+	"next": true,
+	"total_count": 6,
+	"page_count": 2,
+	"results": [
+		{
+			"uuid": "1",
+			"code": "admin",
+			"name": "系统管理员",
+			"mobile": "13788881111",
+			"roles": ["管理员", "信息员"],
+			"orgCode": "0000",
+			"orgName": "总部"
+		},
+		{
+			"uuid": "2",
+			"code": "1001",
+			"name": "张三",
+			"mobile": "13788881111",
+			"roles": ["信息员"],
+			"orgCode": "9001",
+			"orgName": "金桥店"
+		},
+		{
+			"uuid": "3",
+			"code": "1002",
+			"name": "李四",
+			"mobile": "13788881111",
+			"roles": ["拣货员"],
+			"orgCode": "9001",
+			"orgName": "金桥店"
+		},
+		{
+			"uuid": "4",
+			"code": "1003",
+			"name": "王五",
+			"mobile": "13788881111",
+			"roles": ["管理员"],
+			"orgCode": "9001",
+			"orgName": "金桥店"
+		},
+		{
+			"uuid": "5",
+			"code": "1004",
+			"name": "赵六",
+			"mobile": "13788881111",
+			"roles": ["补货员"],
+			"orgCode": "9001",
+			"orgName": "金桥店"
+		}
+	] 
+}

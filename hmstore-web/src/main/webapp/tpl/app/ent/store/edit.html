@@ -1,0 +1,50 @@
+<div class="wrapper-md" ng-controller="StoreEditController">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <ul class="nav nav-pills pull-right">
+            <li style=" padding-top:4px; padding-right:4px"><button class="btn m-b-xs btn-sm btn-default btn-addon" ui-sref="app.enterprise.store.list()"><i class="fa fa-list"></i>返回列表</button></li>
+        </ul>
+      <span ng-switch on="edit_mode">
+        <span ng-switch-when="true">编辑门店</span>
+        <span ng-switch-when="false">新增门店</span>
+      </span>
+    </div>
+
+    <form  class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" ng-submit="submit()">
+        <div class="panel-body">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">代码</label>
+              <div class="col-sm-10">
+                <input name="code" style="" maxlength="30" type="text" class="form-control" ng-model="data.obj.code"  pattern="^[a-zA-Z0-9]+[\s]*$" title="请输入英文或者数字"    required>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">名称</label>
+              <div class="col-sm-10">
+                <input  maxlength="30" type="text" class="form-control"  ng-model="data.obj.name" required>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">地址</label>
+              <div class="col-sm-10">
+                <input  maxlength="225" type="text" class="form-control" ng-model="data.obj.address" required>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">备注</label>
+              <div class="col-sm-10">
+                <textarea  maxlength="225" class="form-control" rows=4 ng-model="data.obj.remark"></textarea>
+              </div>
+            </div>
+        </div>
+        <footer class="panel-footer text-right bg-light lter">
+            <input type="button"    ng-click="delete(data.obj.uuid)"  ng-if="edit_mode"   class="btn btn-danger pull-left"  value="删除"  />
+            <input type="submit" class="btn btn-success"  value="提交" />
+         </footer>
+     </form>
+  </div>
+</div>
+

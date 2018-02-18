@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.gateway.ElectronicTagDao">
+  <resultMap id="BaseResultMap" type="ElectronicTag">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="nodeCode" property="nodeCode" jdbcType="VARCHAR" />
+    <result column="nodeAddress" property="nodeAddress" jdbcType="VARCHAR" />
+    <result column="nodeType" property="nodeType" jdbcType="VARCHAR" />
+    <result column="nodeUsage" property="nodeUsage" jdbcType="VARCHAR" />
+    <result column="nodeState" property="nodeState" jdbcType="VARCHAR" />
+    <result column="checkTime" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="gatewayUuid" property="gatewayUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_electronictag t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_electronictag t
+    where 1=1
+    <if test="gatewayUuid != null and gatewayUuid != ''">
+      and t.gatewayUuid = #{gatewayUuid,jdbcType=VARCHAR}
+    </if>
+    order by t.nodeCode
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_electronictag t
+    where 1=1
+    <if test="sortField != null and sortField == 'nodeCode'">
+      order by t.nodeCode ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="ElectronicTag">
+    insert into
+    t_electronictag (
+      uuid,
+      nodeCode,
+      nodeAddress,
+      nodeType,
+      nodeUsage,
+      nodeState,
+      checkTime,
+      remark,
+      gatewayUuid
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{nodeCode,jdbcType=VARCHAR},
+      #{nodeAddress,jdbcType=VARCHAR},
+      #{nodeType,jdbcType=VARCHAR},
+      #{nodeUsage,jdbcType=VARCHAR},
+      #{nodeState,jdbcType=VARCHAR},
+      #{checkTime,jdbcType=TIMESTAMP},
+      #{remark,jdbcType=VARCHAR},
+      #{gatewayUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="ElectronicTag">
+    insert into
+    t_electronictag (
+      uuid,
+      nodeCode,
+      nodeAddress,
+      nodeType,
+      nodeUsage,
+      nodeState,
+      checkTime,
+      remark,
+      gatewayUuid
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.nodeCode,jdbcType=VARCHAR},
+      #{item.nodeAddress,jdbcType=VARCHAR},
+      #{item.nodeType,jdbcType=VARCHAR},
+      #{item.nodeUsage,jdbcType=VARCHAR},
+      #{item.nodeState,jdbcType=VARCHAR},
+      #{item.checkTime,jdbcType=TIMESTAMP},
+      #{item.remark,jdbcType=VARCHAR},
+      #{item.gatewayUuid,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="ElectronicTag">
+    update t_electronictag
+    set
+      nodeCode = #{nodeCode,jdbcType=VARCHAR},
+      nodeAddress = #{nodeAddress,jdbcType=VARCHAR},
+      nodeType = #{nodeType,jdbcType=VARCHAR},
+      nodeUsage = #{nodeUsage,jdbcType=VARCHAR},
+      nodeState = #{nodeState,jdbcType=VARCHAR},
+      checkTime = #{checkTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_electronictag
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteByGateway" parameterType="String">
+    delete from t_electronictag
+    where gatewayUuid = #{gatewayUuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

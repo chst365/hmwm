@@ -1,0 +1,118 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">门店拣货情况查询</h1>
+</div>
+<div class="hbox hbox-auto-xs hbox-auto-sm bg-light" ng-controller="OrderQueryController">
+	<div class="row wrapper">
+		<div class="col-md-8">
+			<div class="panel panel-default">
+	          <div class="panel-heading font-bold">当日分时订单数</div>
+	          <!--<div class="panel-body">-->
+	            <!--<div ui-jq="plot" ui-options="-->
+	              <!--[-->
+	                <!--{ data: {{d0_1}}, label: '订单数', points: { show: true }, lines: { show: true, fill: true, fillColor: { colors: [{ opacity: 0.1 }, { opacity: 0.1}] } } }-->
+	              <!--],-->
+	              <!--{-->
+	                <!--colors: [ '{{app.color.info}}','{{app.color.warning}}' ],-->
+	                <!--series: { shadowSize: 2 },-->
+	                <!--xaxis:{ font: { color: '#ccc' } },-->
+	                <!--yaxis:{ font: { color: '#ccc' } },-->
+	                <!--grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },-->
+	                <!--tooltip: true,-->
+	                <!--tooltipOpts: { content: '%x.0 时接收 %y.0 单',  defaultTheme: false, shifts: { x: 0, y: 20 } }-->
+	              <!--}-->
+	            <!--" style="height:240px"></div>-->
+	          <!--</div>                  -->
+              <div class="panel-body" style="height: 270px;padding: 15px" id="entLineEchart"></div>
+	        </div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+        <div class="panel-heading font-bold">
+          当日订单完成百分比
+        </div>
+        <!--<div class="panel-body text-center">-->
+          <!--<div class="inline" style="height:240px">-->
+            <!--<div ui-jq="easyPieChart" ui-options="options">-->
+              <!--<div>-->
+                <!--<span class="h2 m-l-sm step">{{pickerPercent}}</span>%-->
+                <!--<div class="text text-sm">分拣完成</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+
+              <div class="panel-body" style="height: 270px;padding: 15px" id="entCircleEchart"></div>
+		</div>
+	</div>
+
+    <div class="row wrapper">
+      <div class="col-sm-9">
+          <div class="input-group">
+            <div class="input-group w-md">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </div>
+          </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group"style="width:100%">
+          <input type="text" class="input-sm form-control" placeholder="搜索" ng-model="search_context"style="width:100%" >
+          <!--<span class="input-group-btn">-->
+            <!--<button class="btn btn-sm btn-default" type="button" ng-click="searchCode(search_context)">搜索</button>-->
+          <!--</span>-->
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped b-t b-light">
+        <thead>
+          <tr>
+            <!-- <th style="width:20px;">
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-click="selectAll()"><i></i>
+              </label>
+            </th> -->
+            <th style="width:30px;">行</th>
+            <th>批次</th>
+            <th>批次名称</th>
+            <th>批次送达时间</th>
+            <th>订单数</th>
+            <th>状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in dataObj | filter:search_context">
+            <!-- <td><label class="i-checks m-b-none"><input type="checkbox" ng-model="data.selected"><i></i></label></td> -->
+            <td>{{ $index + 1 }}</td>
+            <td>{{x.batchNumber}}</td>
+            <td>{{x.batchName}}</td>
+            <td>{{x.batchArriveTime}}</td>
+            <td>{{x.orderCount}}</td>
+            <td>
+              <span ng-switch on="x.pickState">
+                <span ng-switch-when="0" class="badge bg-default">未完成</span>
+                <span ng-switch-when="1" class="badge bg-success">已完成</span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+        <div class="col-sm-8 text-left">
+          <small class="text-muted inline m-t-sm m-b-sm">{{listLength}}条记录</small>
+        </div>
+        <div ng-if="data.page_count>1" class="col-sm-4 text-right text-center-xs">
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li ng-class="{disabled:!data.previous}"><a><i class="fa fa-chevron-left"></i></a></li>
+            <li ng-repeat="page in data.pages" ng-class="{active:page==data.page_index}"><a>{{page}}</a></li>
+            <li ng-class="{disabled:!data.next}"><a><i class="fa fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+</div>
+  </div>

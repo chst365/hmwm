@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+  <mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger/"/>
+  <mvc:default-servlet-handler />
+
+  <context:component-scan base-package="com.hd123.hema.store.web">
+  </context:component-scan>
+
+    <!-- 模板信息设置 -->
+  <bean id="velocityConfig"
+    class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+    <property name="resourceLoaderPath" value="/page/" /><!-- 设置模板存放位置-->
+
+    <property name="configLocation" value="classpath:velocity.properties" />
+
+    <property name="velocityProperties">
+      <props>
+        <prop key="directive.foreach.counter.name">loopCounter</prop>
+        <prop key="directive.foreach.counter.initial.value">0</prop>
+        <prop key="input.encoding">UTF-8</prop><!-- 指定模板引擎进行模板处理的编码 -->
+        <prop key="output.encoding">UTF-8</prop><!-- 指定输出流的编码 -->
+        <prop key="contentType">text/html;charset=UTF-8</prop>
+      </props>
+    </property>
+  </bean>
+   
+   <!-- 设置视图解析工具 -->
+  <bean id="velocityViewResolver"
+    class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+    <property name="prefix" value="/" /><!-- 视图文件的前缀，即存放的路径 -->
+    <property name="suffix" value=".vm" /><!-- 视图文件的后缀名 -->
+       <!-- 避免乱码 -->
+    <property name="contentType" value="text/html;charset=UTF-8" />
+    <property name="dateToolAttribute" value="dateTool" />
+    <property name="numberToolAttribute" value="numberTool" />
+    <property name="exposeSpringMacroHelpers" value="true" /><!--是否使用spring对宏定义的支持-->
+    <property name="exposeRequestAttributes" value="true" /><!--是否开放request属性-->
+    <property name="exposeSessionAttributes" value="true" />
+    <property name="requestContextAttribute" value="rc" /><!--request属性引用名称-->
+       <!-- <property name="layoutUrl" value="layout/default.vm"/> --><!--指定layout文件-->
+    <property name="attributes">
+      <props>
+        <prop key="contextPath">/hmstore-web/</prop>
+      </props>
+    </property>
+  </bean>
+    
+	<!-- 请求的文本编码转为utf-8 -->
+  <mvc:annotation-driven>
+    <mvc:message-converters register-defaults="true">
+      <bean
+        class="org.springframework.http.converter.StringHttpMessageConverter">
+        <constructor-arg value="UTF-8" />
+        <property name="supportedMediaTypes">
+          <list>
+            <value>text/plain;charset=UTF-8</value>
+            <value>text/html;charset=UTF-8</value>
+          </list>
+        </property>
+      </bean>
+    </mvc:message-converters>
+  </mvc:annotation-driven>
+
+  <mvc:annotation-driven>
+    <mvc:message-converters>
+      <bean
+        class="org.springframework.http.converter.StringHttpMessageConverter" />
+      <bean
+        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+      </bean>
+    </mvc:message-converters>
+  </mvc:annotation-driven>
+
+</beans>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.jobpoint.RplEleTagDao">
+  <resultMap id="BaseResultMap" type="RplEleTag">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="requestNodeCode" property="requestNodeCode" jdbcType="VARCHAR" />
+    <result column="requestNodeAddress" property="requestNodeAddress" jdbcType="VARCHAR" />
+    <result column="requestNodeType" property="requestNodeType" jdbcType="VARCHAR" />
+    <result column="requestNodeUsage" property="requestNodeUsage" jdbcType="VARCHAR" />
+    <result column="responseNodeCode" property="responseNodeCode" jdbcType="VARCHAR" />
+    <result column="responseNodeAddress" property="responseNodeAddress" jdbcType="VARCHAR" />
+    <result column="responseNodeType" property="responseNodeType" jdbcType="VARCHAR" />
+    <result column="responseNodeUsage" property="responseNodeUsage" jdbcType="VARCHAR" />
+    <result column="sectionUuid" property="sectionUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_rpleletag t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_rpleletag t
+    where 1=1
+    <if test="sectionUuid != null and sectionUuid != ''">
+      and t.sectionUuid = #{sectionUuid,jdbcType=VARCHAR}
+    </if>
+    order by t.requestNodeCode
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_rpleletag t
+    where 1=1
+    <if test="sortField != null and sortField == 'requestNodeCode'">
+      order by t.requestNodeCode ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="RplEleTag">
+    insert into
+    t_rpleletag (
+      uuid,
+      requestNodeCode,
+      requestNodeAddress,
+      requestNodeType,
+      requestNodeUsage,
+      responseNodeCode,
+      responseNodeAddress,
+      responseNodeType,
+      responseNodeUsage,
+      sectionUuid
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{requestNodeCode,jdbcType=VARCHAR},
+      #{requestNodeAddress,jdbcType=VARCHAR},
+      #{requestNodeType,jdbcType=VARCHAR},
+      #{requestNodeUsage,jdbcType=VARCHAR},
+      #{responseNodeCode,jdbcType=VARCHAR},
+      #{responseNodeAddress,jdbcType=VARCHAR},
+      #{responseNodeType,jdbcType=VARCHAR},
+      #{responseNodeUsage,jdbcType=VARCHAR},
+      #{sectionUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="RplEleTag">
+    insert into
+    t_rpleletag (
+      uuid,
+      requestNodeCode,
+      requestNodeAddress,
+      requestNodeType,
+      requestNodeUsage,
+      responseNodeCode,
+      responseNodeAddress,
+      responseNodeType,
+      responseNodeUsage,
+      sectionUuid
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.requestNodeCode,jdbcType=VARCHAR},
+      #{item.requestNodeAddress,jdbcType=VARCHAR},
+      #{item.requestNodeType,jdbcType=VARCHAR},
+      #{item.requestNodeUsage,jdbcType=VARCHAR},
+      #{item.responseNodeCode,jdbcType=VARCHAR},
+      #{item.responseNodeAddress,jdbcType=VARCHAR},
+      #{item.responseNodeType,jdbcType=VARCHAR},
+      #{item.responseNodeUsage,jdbcType=VARCHAR},
+      #{item.sectionUuid,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="RplEleTag">
+    update t_rpleletag
+    set
+      requestNodeCode = #{requestNodeCode,jdbcType=VARCHAR},
+      requestNodeAddress = #{requestNodeAddress,jdbcType=VARCHAR},
+      requestNodeType = #{requestNodeType,jdbcType=VARCHAR},
+      requestNodeUsage = #{requestNodeUsage,jdbcType=VARCHAR},
+      responseNodeCode = #{responseNodeCode,jdbcType=VARCHAR},
+      responseNodeAddress = #{responseNodeAddress,jdbcType=VARCHAR},
+      responseNodeType = #{responseNodeType,jdbcType=VARCHAR},
+      responseNodeUsage = #{responseNodeUsage,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_rpleletag
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteBySection" parameterType="String">
+    delete from t_rpleletag
+    where sectionUuid = #{sectionUuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

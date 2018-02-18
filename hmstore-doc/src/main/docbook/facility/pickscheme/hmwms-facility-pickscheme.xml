@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+  <title xml:id="wms-mdata-container">拣货方案</title>
+  <section>
+    <title>简介</title>
+    <para>总部定义与维护，总部分发或门店端导入生成门店端拣货方案，门店可维护自己门店的拣货方案。
+    </para>
+  </section>
+  <section>
+    <title>领域模型</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata
+          fileref="images/facility/pickscheme/com.hd123.hema.store.bean.facility.pickscheme.jpg" />
+      </imageobject>
+    </mediaobject>
+
+    <section>
+      <title>属性含义</title>
+      <section>
+        <title>拣货方案，包括拣货方案模板与具体拣货方案</title>
+        <para>记录拣货方案信息。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>code</td>
+              <td>代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>名称</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>state</td>
+              <td>状态</td>
+              <td>varchar2(15)</td>
+              <td>not null</td>
+              <td>总部用时值为“待生效”</td>
+            </tr>
+            <tr>
+              <td>version</td>
+              <td>版本</td>
+              <td>int</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>versionTime</td>
+              <td>最后修改时间</td>
+              <td>Date</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>orgUuid</td>
+              <td>组织UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>facilityTemplateUuid</td>
+              <td>设施模板UUID</td>
+              <td>varchar2(32)</td>
+              <td></td>
+              <td>总部用</td>
+            </tr>
+            <tr>
+              <td>facilityTemplateCode</td>
+              <td>设施模板代码</td>
+              <td>varchar2(30)</td>
+              <td></td>
+              <td>总部用</td>
+            </tr>
+            <tr>
+              <td>facilityTemplateName</td>
+              <td>设施模板名称</td>
+              <td>varchar2(30)</td>
+              <td></td>
+              <td>总部用</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <title>拣货方案分发门店</title>
+        <para>记录分发门店信息，总部用。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>storeUuid</td>
+              <td>门店UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>storeCode</td>
+              <td>门店代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>storeName</td>
+              <td>门店名称</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>pickSchemeTemplateUuid</td>
+              <td>拣货方案模板UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <title>拣货方案货位商品</title>
+        <para>记录货位商品对应关系。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>binCode</td>
+              <td>货位代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>articleUuid</td>
+              <td>商品UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>articleCode</td>
+              <td>商品代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>articleName</td>
+              <td>商品名称</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>pickSchemeUuid</td>
+              <td>拣货方案UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+
+    <section>
+      <title>界面说明</title>
+      <itemizedlist>
+        <listitem>
+          <para>总部维护拣货分区时，选择设施模板，带出该模板下维护的货位；</para>
+        </listitem>
+        <listitem>
+          <para>状态：组织为总部的拣货方案，状态都是待生效；下发给门店或门店导入后组织变为门店，启用后状态变为使用中；一个门店限制只能有一个使用中的相同拣货方案，启用新的拣货方案将该拣货方案其他的版本状态置为待生效；</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+</chapter>

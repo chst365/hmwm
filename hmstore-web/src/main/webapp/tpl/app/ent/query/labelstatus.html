@@ -1,0 +1,124 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">标签状态查询</h1>
+</div>
+<div class="hbox hbox-auto-xs hbox-auto-sm bg-light"
+	ng-controller="LabelStatusController">
+
+  <!-- column -->
+  <div class="col w b-r">
+    <div class="vbox">
+      <div class="row-row">
+        <div class="cell scrollable hover">
+          <div class="cell-inner">
+            <div class="list-group no-radius no-border no-bg m-b-none">
+              <div class="">
+                <!--<a class="row list-group-item b-b" ng-class="{'select': (filterStore == '')}" ng-click="selectStore({storeName:''})">所有门店</a>-->
+                <a class="list-group-item m-l hover-anchor b-a no-select " ng-class="{'select': (filterStore == 'allStatus')}" ng-click="selectStore('allStatus')">
+                  <span class="block" ng-class="{'m-n': item.storeSelected }">所有门店</span>
+                </a>
+                <a ng-repeat="item in storeListsInfo" class="list-group-item m-l hover-anchor b-a no-select" ng-class="{'select': (filterStore == ''+item.storeName)}" ng-click="selectStore(item.storeName)">
+                  <span class="block" ng-class="{'m-n': item.storeSelected }">{{item.storeName}}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+
+  <!-- column -->
+  <div class="col w-lg lter b-r">
+    <div class="vbox">
+      <div class="row-row">
+        <div class="cell scrollable hover">
+          <div class="cell-inner">
+            <!--<div class="m-t-n-xxs">-->
+              <!--<div class="list-group list-group-lg no-radius no-border no-bg m-b-none">-->
+              	<!--<a class="list-group-item m-l" ng-class="{'select m-l-none': (filterStore == '')}" ng-click="selectItem({nodeState:''})">-->
+              	  <!--<span class="block text-ellipsis m-l-n text-md" ng-class="{'m-l-none': (filterStore == '')}">-->
+              	  <!--所有状态-->
+              	  <!--</span>-->
+              	<!--</a>-->
+
+                <!--<a class="list-group-item m-l" ng-class="{'select m-l-none': item.storeSelected }"-->
+                   <!--ng-click="selectItem(item)" ng-repeat="item in allStoreInfo | filter:{filterStore:filterStateName} | orderBy:'nodeState' | unique: 'nodeState'"-->
+                   <!--class="list-group-item m-l" ng-class="{'select m-l-none': item.storeSelected }" ng-click="selectItem(item)">-->
+                  <!--<span class="block text-ellipsis m-l-n text-md" ng-class="{'m-l-none': item.storeSelected }">-->
+                    <!--{{ :: item.filterStateName ? item.filterStateName : "没有数据" }}-->
+                    <!--<b class="badge bg-danger pull-right" ng-show="item.nodeState == 'Warning'">{{(items | filter:{filterStore:filterStateName,status:item.nodeState}).length}}</b>-->
+                  <!--</span>-->
+                <!--</a>-->
+              <!--</div>-->
+            <!--</div>-->
+            <div class="m-t-n-xxs">
+              <div class="list-group list-group-lg no-radius no-border no-bg m-b-none">
+                <a class="list-group-item m-l" ng-click="envSelectItem('allStatus')" ng-class="{'select m-l-none': (backgroundColorFlag == 3)}">
+
+              	  <span class="block text-ellipsis m-l-n text-md">
+              	  所有状态
+              	  </span>
+                </a>
+                <a class="list-group-item m-l" ng-click="envSelectItem('correct')" ng-class="{'select m-l-none': (backgroundColorFlag == 1)}">
+                  <span class="block text-ellipsis m-l-n text-md">
+                   正常
+                    <b class="badge bg-danger pull-right" ng-show="false">{{storesCorrectStatusArray.length}}</b>
+                  </span>
+                </a>
+                <a class="list-group-item m-l" ng-click="envSelectItem('warning')" ng-class="{'select m-l-none': (backgroundColorFlag == 2)}">
+                  <span class="block text-ellipsis m-l-n text-md">
+                   警告
+                    <b class="badge bg-danger pull-right" ng-show="envItemBadge > 0">{{envItemBadge}}</b>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <!--<div class="text-center pos-abt w-full" style="top:50%;" ng-hide="(items | filter:{filterStore:filterStateName}).length">没有数据</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+
+  <!-- column -->
+  <div class="col bg-white-only">
+    <div class="vbox">
+      <div class="wrapper-sm b-b">
+        <div class="input-group m-b-xxs">
+          <span class="input-group-addon input-sm no-border no-bg"><i class="icon-magnifier text-md m-t-xxs"></i></span>
+          <input type="text" class="form-control input-sm no-border no-bg text-md" placeholder="搜索..." ng-model="queryStore">
+        </div>
+      </div>
+      <div class="row-row">
+      	<table class="table table-striped b-t b-light">
+          <thead>
+            <tr>
+              <th style="width:30px;">行</th>
+              <th>门店</th>
+              <th>标签地址</th>
+              <th>状态</th>
+              <th>检测时间</th>
+              <th style="width:70px;">信息</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in envItem | filter:queryStore">
+              <td>{{($index + 1) }}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.nodeAddress}}</td>
+              <td><span class="badge" ng-class="{'btn-danger': item.nodeState == '警告', 'bg-success': item.nodeState == '正常'}">
+                {{item.nodeState}}</span></td>
+              <td>{{item.checkTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+              <td>
+                <a onMouseOver="$(this).tooltip('show')" data-toggle="tooltip" title="{{::item.remark}}" data-placement="top"><i class="fa fa-info"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+</div>

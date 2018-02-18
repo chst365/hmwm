@@ -1,0 +1,94 @@
+<div class="wrapper-md" ng-controller="FaciTemplateEditController">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <ul class="nav nav-pills pull-right">
+            <li style=" padding-top:4px; padding-right:4px"><button class="btn m-b-xs btn-sm btn-default btn-addon" ui-sref="app.enterprise.facitemplate.list()"><i class="fa fa-list"></i>返回列表</button></li>
+        </ul>
+      <span ng-switch on="edit_mode">
+        <span ng-switch-when="true">编辑设施模板</span>
+        <span ng-switch-when="false">新增设施模板</span>
+      </span>
+    </div>
+
+
+        <div class="panel-body">
+          <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" ng-submit="saveFacitemplate()">
+          <div class="form-group">
+              <label class="col-sm-2 control-label">代码</label>
+              <div class="col-sm-10">
+                <input maxlength="30" type="text" class="form-control" pattern="^[a-zA-Z0-9]+[\s]*$" title="请输入英文或者数字" ng-model="data.code" required>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">名称</label>
+              <div class="col-sm-10">
+                <input maxlength="30" type="text" class="form-control" ng-model="data.name" required>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div style="margin-bottom: 62px;">
+                <button  type="submit" class="btn btn-success pull-right"  >保存设施模板</button>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+        </form>
+            <!--   网关及作业点的功能   -->
+            <div class="form-group">
+                <tabset class="tab-container">
+                  <tab heading="设备">
+                    <div class="hbox hbox-auto-xs hbox-auto-sm">
+                      <div class="col w-lg bg-light dk b-r">
+                        <div class="wrapper bg b-b">
+                          <button type="button" class="btn btn-sm btn-success pull-right" ui-sref="app.enterprise.facitemplate.newgateway({uuid:data.uuid})">新增网关</button>
+                          <h4 class="m-n font-thin">网关</h4>
+                        </div>
+                        <div class="list-group">
+                          <a class="list-group-item" ng-repeat="gateway in data.gateways" ng-click="onGatewaySelect(gateway)">
+                            <i class="fa fa-chevron-right text-muted"></i>
+                            <i class="fa fa-plug fa-fw m-r-xs"></i>
+                            <span class="font-bold">{{gateway.code}}</span> &lt;{{gateway.ip}}:{{gateway.port}}&gt;
+                          </a>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <!-- <div class="wrapper"> -->
+                          <div ui-view="gatewayView"></div>
+                        <!-- </div> -->
+                      </div>
+                    </div>
+                  </tab>
+                  <tab heading="货位">
+                    <div class="hbox hbox-auto-xs hbox-auto-sm">
+                      <div class="col w-lg bg-light dk b-r">
+                        <div class="wrapper bg b-b">
+                          <button type="button" class="btn btn-sm btn-success pull-right" ui-sref="app.enterprise.facitemplate.newjobpoint({uuid:data.uuid})">新增作业点</button>
+                          <h4 class="m-n font-thin">作业点</h4>
+                        </div>
+                        <div style="padding-top: 5px">
+                          <abn-tree
+                            tree-data         = "tree_data"
+                            tree-control      = "jobpointTree"
+                            expand-level      = "3"
+                            icon-leaf         = "fa fa-file-o"
+                            icon-expand       = "fa fa-plus"
+                            icon-collapse     = "fa fa-minus"
+                            >
+                          </abn-tree>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <!-- <div class="wrapper"> -->
+                          <div ui-view="jobpointView"></div>
+                        <!-- </div> -->
+                      </div>
+                    </div>
+                  </tab>
+                </tabset>
+            </div>
+        </div>
+        <footer class="panel-footer text-right bg-light lter" style=" height: 49px;">
+            <!--<input type="button" ng-click="deleteEditfcp()" class="btn btn-danger pull-left" value="删除" />-->
+         </footer>
+  </div>
+</div>
+

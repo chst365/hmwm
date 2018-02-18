@@ -1,0 +1,36 @@
+<div class="wrapper-md" ng-controller="BinController">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <span>货位</span>
+    </div>
+      <div class="hbox hbox-auto-xs hbox-auto-sm">
+        <div class="col w-lg bg-light dk b-r">
+          <div class="wrapper bg b-b">
+            <button  type="button" class="btn btn-sm btn-success pull-right" ui-sref="app.store.newstojobpoint()">新增作业点</button>
+            <h4 class="m-n font-thin">作业点</h4>
+          </div>
+          <div style="padding-top: 5px">
+            <abn-tree
+              tree-data         = "tree_data"
+              tree-control      = "jobpointTree"
+              expand-level      = "3"
+              icon-leaf         = "fa fa-file-o"
+              icon-expand       = "fa fa-plus"
+              icon-collapse     = "fa fa-minus"
+              >
+            </abn-tree>
+          </div>
+        </div>
+        <div class="col">
+          <!-- <div class="wrapper"> -->
+            <div ui-view="jobpointView"></div>
+          <!-- </div> -->
+        </div>
+      </div>
+      <footer class="panel-footer text-right bg-light lter">
+          <!--<input type="button" ng-click="delete()" ng-if="edit_mode" class="btn btn-danger pull-left" value="删除"/>
+          <input type="submit" class="btn btn-success" value="保存"/>-->
+       </footer>
+  </div>
+</div>
+

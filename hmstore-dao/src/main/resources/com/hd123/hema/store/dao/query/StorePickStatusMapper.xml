@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.query.StorePickStatusDao">
+  <resultMap id="BaseResultMap" type="StorePickStatus">
+    <result column="batchId" property="batchNumber" jdbcType="VARCHAR" />
+    <result column="batchName" property="batchName" jdbcType="VARCHAR" />
+    <result column="batchArriveTime" property="batchArriveTime" jdbcType="VARCHAR" />
+    <result column="batchOrderCount" property="orderCount" jdbcType="VARCHAR" />
+    <result column="status" property="pickState" jdbcType="VARCHAR" />
+    <result column="recordCreateTime" property="recordCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    SELECT
+      p.batchId,
+      p.batchName,
+      p.batchArriveTime,
+      p.batchOrderCount,
+      p.recordCreateTime,
+      b.status
+    FROM
+        MM_R_PICKORDER p
+    LEFT JOIN MM_R_BATCHSTATUS b ON p.batchId = b.batchId
+    WHERE 1 = 1
+      <if test="pickDate != null">
+        and b.pickTime &gt;= #{pickDate} and b.pickTime &lt; date_add(#{pickDate}, INTERVAL 1 day)
+      </if>
+      <if test="storeCodes != null and storeCodes.size() > 0">
+        and p.warehouseCode in
+        (
+        <foreach collection="storeCodes" item="item" index="index" separator=",">
+          #{item,jdbcType=VARCHAR}
+        </foreach>
+        )
+      </if>
+    ORDER BY p.batchId
+  </select>
+
+  <update id="updatePickStatus" parameterType="SStorePickStatus">
+    UPDATE MM_R_BATCHSTATUS b, MM_R_PICKORDER p
+        SET b.STATUS = #{state,jdbcType=INTEGER}
+    WHERE b.batchId = p.batchId
+        AND b.batchId = #{batchId,jdbcType=VARCHAR}
+        AND p.warehouseCode = #{storeCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

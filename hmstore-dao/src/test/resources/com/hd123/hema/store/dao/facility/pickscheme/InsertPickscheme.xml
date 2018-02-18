@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_PICKSCHEME UUID="0f5a2dd95d34441c9b48e91725de3843" code="Z001" name="张问问的分拣方案模板"
+                  state="UnEffective" version="14" versionTime="2016-08-08 10:42:57"
+                  orgUuid="hemaUuid" facilityTemplateUuid="729c23e63c9f457f8ab3b71ce5c35d54" facilityTemplateCode="永杰设施模板7"
+                  facilityTemplateName="永杰设施模板7" jobPointUuid="7827e2c3c2ec409fadd9c3ca38fa7c82" jobPointCode="总部作业点"
+                  jobPointName="总部作业点" />
+    <T_PICKSCHEME UUID="e9b578e1704646fa9c56ae2c77168a57" code="总部新增拣货模板" name="总部新增拣货模板"
+                  state="UnEffective" version="1" versionTime="2016-08-08 13:36:51"
+                  orgUuid="hemaUuid2" facilityTemplateUuid="0c7aeae6de3941b38fbf4293c3ece002" facilityTemplateCode="FT001"
+                  facilityTemplateName="张林的设施模板" jobPointUuid="null" jobPointCode="null"
+                  jobPointName="null" />
+    <T_PICKSCHEME UUID="fd8de22f3b554d6fac8309ffad4ddb14" code="aa1234" name="平平的拣货方案模板"
+                  state="Using" version="4" versionTime="2016-08-04 15:44:22"
+                  orgUuid="2a375856ba7d4493a0253221605abd0e" jobPointUuid="36d6c1fc9f0e463da527b75e4c3a6e8c" jobPointCode="7-永杰zyd02"
+                  jobPointName="7-永杰zyd02" />
+</dataset>

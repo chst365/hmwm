@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:mybatis="http://mybatis.org/schema/mybatis-spring" xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:mvc="http://www.springframework.org/schema/mvc"
+  xsi:schemaLocation="
+           http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc.xsd  
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       "
+  default-autowire="byName">
+
+  <bean id="signValidator" class="com.hd123.hema.store.plugins.common.SignValidator" />
+
+  <bean id="wdkOutTransformer" class="com.hd123.hema.store.plugins.common.WDKOutTransformer" />
+
+	<!-- 被动发送商品资料 -->
+  <bean id="articlePullController" class="com.hd123.hema.store.xi.ArticlePullController">
+    <property name="inTransformer">
+      <bean
+        class="com.hd123.hema.store.plugins.article.send.ArticleSendInTransformer">
+        <property name="validator" ref="signValidator" />
+      </bean>
+    </property>
+    <property name="receiveProcessor">
+      <bean
+        class="com.hd123.hema.store.plugins.article.send.ArticleSendProcessor">
+      </bean>
+    </property>
+    <property name="outTransformer" ref="wdkOutTransformer" />
+  </bean>
+
+    <!-- 被动发送货位资料 -->
+  <bean id="binPullController" class="com.hd123.hema.store.xi.BinPullController">
+    <property name="inTransformer">
+      <bean
+        class="com.hd123.hema.store.plugins.bin.send.BinSendInTransformer">
+        <property name="validator" ref="signValidator" />
+      </bean>
+    </property>
+    <property name="receiveProcessor">
+      <bean
+        class="com.hd123.hema.store.plugins.bin.send.BinSendProcessor">
+      </bean>
+    </property>
+    <property name="outTransformer" ref="wdkOutTransformer" />
+  </bean>
+
+    <!-- 被动发送电子标签资料 -->
+  <bean id="eleTagPullController" class="com.hd123.hema.store.xi.EleTagPullController">
+    <property name="inTransformer">
+      <bean
+        class="com.hd123.hema.store.plugins.eletag.send.EleTagSendInTransformer">
+        <property name="validator" ref="signValidator" />
+      </bean>
+    </property>
+    <property name="receiveProcessor">
+      <bean
+        class="com.hd123.hema.store.plugins.eletag.send.EleTagSendProcessor">
+      </bean>
+    </property>
+    <property name="outTransformer" ref="wdkOutTransformer" />
+  </bean>
+
+    <!-- 被动发送电子标签资料 -->
+  <bean id="pickSchemePullController" class="com.hd123.hema.store.xi.PickSchemePullController">
+    <property name="inTransformer">
+      <bean
+        class="com.hd123.hema.store.plugins.pickscheme.send.PickSchemeSendInTransformer">
+        <property name="validator" ref="signValidator" />
+      </bean>
+    </property>
+    <property name="receiveProcessor">
+      <bean
+        class="com.hd123.hema.store.plugins.pickscheme.send.PickSchemeSendProcessor">
+      </bean>
+    </property>
+    <property name="outTransformer" ref="wdkOutTransformer" />
+  </bean>
+
+    <!-- 被动接收电子标签状态 -->
+  <bean id="eleTagStatusPullController" class="com.hd123.hema.store.xi.ELeTagStatusPullController">
+    <property name="inTransformer">
+      <bean
+        class="com.hd123.hema.store.plugins.eletagstatus.receive.EleTagStatusReceiveInTransformer">
+        <property name="validator" ref="signValidator" />
+      </bean>
+    </property>
+    <property name="receiveProcessor">
+      <bean
+        class="com.hd123.hema.store.plugins.eletagstatus.receive.EleTagStatusReceiveProcessor">
+      </bean>
+    </property>
+    <property name="outTransformer" ref="wdkOutTransformer" />
+  </bean>
+  
+    <!-- 被动接收拣货情况状态 -->
+  <bean id="pickStatusPullController" class="com.hd123.hema.store.xi.PickStatusPullController">
+    <property name="inTransformer">
+      <bean
+        class="com.hd123.hema.store.plugins.pickstatus.receive.PickStatusReceiveInTransformer">
+        <property name="validator" ref="signValidator" />
+      </bean>
+    </property>
+    <property name="receiveProcessor">
+      <bean
+        class="com.hd123.hema.store.plugins.pickstatus.receive.PickStatusReceiveProcessor">
+      </bean>
+    </property>
+    <property name="outTransformer" ref="wdkOutTransformer" />
+  </bean>
+</beans>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_BINELETAG UUID="002ac15631874ac8894f7061a70fd6cb" binCode="ckjAA1" nodeCode="zbdzbq" nodeAddress="zbdzbq"
+                 nodeType="PickTag" nodeUsage="PickDisplayQty" sectionUuid="c4cf12ecbc3d4e189f64d5c91314ca6a"/>
+    <T_BINELETAG UUID="5663c3182c524b02b84216e592cd86fe" binCode="总部002" nodeCode="总部电子标?" nodeAddress="总部电子标?"
+                 nodeType="PickTag" nodeUsage="PickDisplayQty" sectionUuid="d01556c6b45944d0bd2b542e7d6d6400"/>
+    <T_BINELETAG UUID="f53bf91bdf484375892087bf57dc1277" binCode="2A" nodeCode="1002" nodeAddress="zbdzbq"
+                 nodeType="PickTag" nodeUsage="PickDisplayQty" sectionUuid="9b9fa17cec3c43a6a782afa4949cc1a0"/>
+    <T_BINELETAG UUID="13bf001042a1459abe69075b523eebea" binCode="z2货位01" nodeCode="标签dz001" nodeAddress="标签dz001"
+                 nodeType="PickTag" nodeUsage="PickDisplayQty" sectionUuid="e4ee8f7696b745bdbfd31d6992126fd2"/>
+</dataset>

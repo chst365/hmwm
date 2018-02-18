@@ -1,0 +1,18 @@
+{
+	"previous": false,
+	"next": true,
+	"total_count": 2,
+	"page_count": 1,
+	"results": [
+		{
+			"uuid": "1",
+			"code": "T001",
+			"name": "双线两组"
+		},
+		{
+			"uuid": "2",
+			"code": "T002",
+			"name": "双线三组"
+		}
+	] 
+}

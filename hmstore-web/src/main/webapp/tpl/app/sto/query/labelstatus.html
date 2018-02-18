@@ -1,0 +1,78 @@
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">标签状态查询</h1>
+</div>
+<div class="hbox hbox-auto-xs hbox-auto-sm bg-light" 
+	ng-controller="LabelStatusController">
+  <!-- column -->
+  <div class="col w-lg lter b-r">
+    <div class="vbox">
+      <div class="row-row">
+        <div class="cell scrollable hover">
+          <div class="cell-inner">
+            <div class="m-t-n-xxs">
+              <div class="list-group list-group-lg no-radius no-border no-bg m-b-none">
+              	<a class="list-group-item m-l" ng-click="selectItem('allStatus')" ng-class="{'select m-l-none': (backgroundColorFlag == 3)}">
+              	  <span class="block text-ellipsis m-l-n text-md">
+              	  所有状态
+              	  </span>
+              	</a>
+                <a class="list-group-item m-l" ng-click="selectItem('correct')" ng-class="{'select m-l-none': (backgroundColorFlag == 1)}">
+                  <span class="block text-ellipsis m-l-n text-md">
+                   正常
+                    <b class="badge bg-danger pull-right" ng-show="false">{{storesCorrectStatusArray.length}}</b>
+                  </span>
+                </a>
+                <a class="list-group-item m-l" ng-click="selectItem('warning')" ng-class="{'select m-l-none': (backgroundColorFlag == 2)}">
+                  <span class="block text-ellipsis m-l-n text-md">
+                   警告
+                    <b class="badge bg-danger pull-right" ng-show="storesWarningStatusArray.length >0">{{storesWarningStatusArray.length}}</b>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+
+  <!-- column -->
+  <div class="col bg-white-only">
+    <div class="vbox">
+      <div class="wrapper-sm b-b">
+        <div class="input-group m-b-xxs">
+          <span class="input-group-addon input-sm no-border no-bg"><i class="icon-magnifier text-md m-t-xxs"></i></span>
+          <input type="text" class="form-control input-sm no-border no-bg text-md" placeholder="搜索..." ng-model="queryStore">
+        </div>
+      </div>
+      <div class="row-row">
+      	<table class="table table-striped b-t b-light">
+          <thead>
+            <tr>
+              <th style="width:30px;">行</th>
+              <th>门店</th>
+              <th>标签地址</th>
+              <th>状态</th>
+              <th>检测时间</th>
+              <th style="width:70px;">信息</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in items | filter:queryStore track by $index">
+              <td>{{$index+1}}</td>
+              <td>{{::data[0].storeName}}</td>
+              <td>{{::item.nodeAddress}}</td>
+              <td><span class="badge" ng-class="{'btn-danger': item.nodeState === '警告', 'bg-success': item.nodeState === '正常'}">{{::item.nodeState}}</span></td>
+              <td>{{::item.checkTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+              <td>
+                <a onMouseOver="$(this).tooltip('show')" data-toggle="tooltip" title="{{::item.remark}}" data-placement="top"><i class="fa fa-info"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+</div>

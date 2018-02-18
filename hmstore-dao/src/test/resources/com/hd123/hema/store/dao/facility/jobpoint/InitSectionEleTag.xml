@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_SECTIONELETAG UUID="a358a210c9c04e7b8294b1a742e43cfe" nodeCode="string" nodeAddress="string"
+                     nodeType="PickTag" nodeUsage="PickDisplayQty" sectionUuid="875576c819524f45a8cd00f5b0c36ffe"/>
+    <T_SECTIONELETAG UUID="b106e75cbfbc4889b16b52b737a36298" nodeCode="xs001" nodeAddress="xs001"
+                     nodeType="DisplayTag" nodeUsage="Section" sectionUuid="e6bc692202ac47a58f4b32da9e3a256e"/>
+</dataset>

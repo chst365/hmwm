@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <T_ARTICLE UUID="1002" code="A002" name="土豆烧牛肉"
+    categoryCode="noon" categoryName="午餐" />
+  <T_ARTICLE UUID="1003" code="A003" name="蒜蓉西兰花"
+    categoryCode="afternoon" categoryName="晚餐" />
+</dataset>

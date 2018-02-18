@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.material.ArticleDao">
+  <resultMap id="BaseResultMap" type="Article">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="categoryCode" property="categoryCode" jdbcType="VARCHAR" />
+    <result column="categoryName" property="categoryName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_article t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getByCode" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_article t
+    where t.code = #{code,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" resultMap="BaseResultMap" parameterType="QueryParam">
+    select t.*
+    from t_article t
+    order by t.code
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_article t
+    where 1=1
+    <if test="code != null and code != ''">
+      and t.code like CONCAT('%',#{code,jdbcType=VARCHAR},'%')
+    </if>
+    order by t.code
+  </select>
+
+  <insert id="insert" parameterType="Article">
+    insert into
+    t_article (
+      uuid,
+      code,
+      name,
+      categoryCode,
+      categoryName
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{code,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{categoryCode,jdbcType=VARCHAR},
+      #{categoryName,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into
+    t_article (
+      uuid,
+      code,
+      name,
+      categoryCode,
+      categoryName
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.uuid,jdbcType=VARCHAR},
+        #{item.code,jdbcType=VARCHAR},
+        #{item.name,jdbcType=VARCHAR},
+        #{item.categoryCode,jdbcType=VARCHAR},
+        #{item.categoryName,jdbcType=VARCHAR}
+       )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="Article">
+    update t_article
+    set
+      name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      categoryCode = #{categoryCode,jdbcType=VARCHAR},
+      categoryName = #{categoryName,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_article
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

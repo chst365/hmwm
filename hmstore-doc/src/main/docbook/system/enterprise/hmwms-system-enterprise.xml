@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+  <title xml:id="wms-mdata-container">企业</title>
+  <section>
+    <title>简介</title>
+    <para>企业只有一个，即盒马，目前采用预定义的形式，不支持界面维护。
+    </para>
+  </section>
+  <section>
+    <title>领域模型</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata
+          fileref="images/system/enterprise/com.hd123.hema.store.bean.system.enterprise.jpg" />
+      </imageobject>
+    </mediaobject>
+
+    <section>
+      <title>属性含义</title>
+      <section>
+        <title>企业</title>
+        <para>记录企业信息。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>code</td>
+              <td>代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>名称</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>simpleName</td>
+              <td>名称简称</td>
+              <td>varchar2(30)</td>
+              <td>null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>logoIcon</td>
+              <td>图标</td>
+              <td>varchar2(100)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>address</td>
+              <td>电话</td>
+              <td>varchar2(12)</td>
+              <td>null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>status</td>
+              <td>状态</td>
+              <td>int(1)</td>
+              <td>not null</td>
+              <td>0：正常；1：删除</td>
+            </tr>
+            <tr>
+              <td>memo</td>
+              <td>备忘录</td>
+              <td>varchar2(255)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  </section>
+</chapter>

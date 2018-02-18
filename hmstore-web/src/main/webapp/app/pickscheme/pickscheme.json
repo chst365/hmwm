@@ -1,0 +1,29 @@
+{
+	"uuid": "1",
+	"code": "T02-001",
+	"name": "门店类型2-全天方案",
+	"version": "2",
+	"status": "1",
+	"relations": [
+		{
+			"bin": "AA1",
+			"goodsUuid": "1"
+		},
+		{
+			"bin": "AA2",
+			"goodsUuid": "2"
+		},
+		{
+			"bin": "AB1",
+			"goodsUuid": "3"
+		},
+		{
+			"bin": "AB2",
+			"goodsUuid": "4"
+		},
+		{
+			"bin": "AC1",
+			"goodsUuid": "5"
+		}
+	]
+}

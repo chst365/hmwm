@@ -1,0 +1,38 @@
+{
+	"previous": false,
+	"next": true,
+	"total_count": 6,
+	"page_count": 2,
+	"results": [
+		{
+			"uuid": "1",
+			"code": "9001",
+			"name": "金桥店",
+			"address": "金桥"
+		},
+		{
+			"uuid": "2",
+			"code": "9002",
+			"name": "陆家嘴店",
+			"address": "陆家嘴"
+		},
+		{
+			"uuid": "3",
+			"code": "9003",
+			"name": "陆家嘴店-02",
+			"address": "陆家嘴"
+		},
+		{
+			"uuid": "4",
+			"code": "9004",
+			"name": "陆家嘴店-03",
+			"address": "陆家嘴"
+		},
+		{
+			"uuid": "5",
+			"code": "9005",
+			"name": "陆家嘴店-04",
+			"address": "陆家嘴"
+		}
+	] 
+}

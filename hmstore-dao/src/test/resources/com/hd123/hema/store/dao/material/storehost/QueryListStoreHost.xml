@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <t_storehost UUID="1001"  name="门店主机1"
+    ip="ip地址1" macAddress="mac地址1" allowAccess="true" storeUuid="uuid门店1" />
+    
+  <t_storehost UUID="1002"  name="门店主机2"
+    ip="ip地址2" macAddress="mac地址2" allowAccess="true" storeUuid="uuid门店1" />
+    
+  <t_storehost UUID="1003"  name="门店主机3"
+    ip="ip地址3" macAddress="mac地址3" allowAccess="false" storeUuid="uuid门店1" />
+</dataset>

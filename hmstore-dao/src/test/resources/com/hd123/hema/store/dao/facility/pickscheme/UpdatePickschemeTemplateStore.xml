@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_PICKSCHEMETEMPLATESTORE UUID="003550c083fc4269b389ab69cc0c1e3f" storeUuid="a80031c886f8436c9730e265b2dcfbc8" storeCode="平平陆家嘴的店"
+                               storeName="x008" pickSchemeUuid="d483021ca13a4e07be6236431ca90459" />
+    <T_PICKSCHEMETEMPLATESTORE UUID="04dbbb5cbe2d437eae6be41df42650e8" storeUuid="a80031c886f8436c9730e265b2dcfbc8" storeCode="x008"
+                               storeName="S001" pickSchemeUuid="0f5a2dd95d34441c9b48e91725de3843" />
+</dataset>

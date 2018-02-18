@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.jobpoint.JobPointDao">
+  <resultMap id="BaseResultMap" type="JobPoint">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="templateUuid" property="templateUuid"
+      jdbcType="VARCHAR" />
+    <result column="orgUuid" property="orgUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_jobpoint t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getJobPointByCode" resultMap="BaseResultMap"
+    parameterType="map">
+    select t.*
+    from t_jobpoint t
+    where t.code = #{code,jdbcType=VARCHAR}
+      <if test="templateUuid != null and templateUuid != ''">
+        and t.templateUuid = #{templateUuid,jdbcType=VARCHAR}
+      </if>
+    and t.orgUuid = #{orgUuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_jobpoint t
+    where 1=1
+    <if test="orgUuid != null and orgUuid != ''">
+      and t.orgUuid = #{orgUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="templateUuid != null and templateUuid != ''">
+      and t.templateUuid = #{templateUuid,jdbcType=VARCHAR}
+    </if>
+    order by t.code
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition"
+    resultMap="BaseResultMap">
+    select t.*
+    from t_jobpoint t
+    where 1=1
+    <if test="sortField != null and sortField == 'code'">
+      order by t.code ${orderDir}
+    </if>
+  </select>
+
+  <select id="queryAvaliableEleTags" parameterType="QueryParam"
+    resultType="java.lang.String">
+    SELECT
+    DISTINCT e.nodeCode
+    FROM
+    t_electronictag e,
+    t_gateway g
+    WHERE e.gatewayUuid = g.uuid
+    AND g.templateUuid = #{facilityTemplateUuid,jdbcType=VARCHAR}
+    AND e.gatewayUuid = #{gatewayUuid,jdbcType=VARCHAR}
+    AND
+    e.nodeCode NOT IN
+    (SELECT be.nodeCode from t_bineletag be, t_section s, t_pickarea p,
+    t_jobpoint j
+    WHERE be.sectionUuid = s.uuid and s.pickAreaUuid = p.uuid and
+    p.jobPointUuid = j.uuid
+    and j.orgUuid = #{orgUuid,jdbcType=VARCHAR})
+    AND e.nodeCode NOT IN
+    (select se.nodeCode from t_sectioneletag se, t_section s, t_pickarea p,
+    t_jobpoint j
+    WHERE se.sectionUuid = s.uuid and s.pickAreaUuid = p.uuid and
+    p.jobPointUuid = j.uuid
+    and j.orgUuid = #{orgUuid,jdbcType=VARCHAR})
+    AND e.nodeCode NOT IN
+    (select re.requestNodeCode from t_rpleletag re, t_section s, t_pickarea p,
+    t_jobpoint j
+    WHERE re.sectionUuid = s.uuid and s.pickAreaUuid = p.uuid and
+    p.jobPointUuid = j.uuid
+    and j.orgUuid = #{orgUuid,jdbcType=VARCHAR})
+    AND e.nodeCode NOT IN
+    (select re.responseNodeCode from t_rpleletag re, t_section s, t_pickarea p,
+    t_jobpoint j
+    WHERE re.sectionUuid = s.uuid and s.pickAreaUuid = p.uuid and
+    p.jobPointUuid = j.uuid
+    and j.orgUuid = #{orgUuid,jdbcType=VARCHAR})
+    AND g.orgUuid =
+    #{orgUuid,jdbcType=VARCHAR}
+    AND e.nodeType = #{type,jdbcType=VARCHAR}
+    ORDER BY e.nodeCode
+  </select>
+
+  <insert id="insert" parameterType="JobPoint">
+    insert into
+    t_jobpoint (
+    uuid,
+    code,
+    name,
+    templateUuid,
+    orgUuid
+    ) values (
+    #{uuid,jdbcType=VARCHAR},
+    #{code,jdbcType=VARCHAR},
+    #{name,jdbcType=VARCHAR},
+    #{templateUuid,jdbcType=VARCHAR},
+    #{orgUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into
+    t_jobpoint (
+    uuid,
+    code,
+    name,
+    templateUuid,
+    orgUuid
+    ) values
+    <foreach collection="list" item="item" index="index"
+      separator=",">
+      (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.code,jdbcType=VARCHAR},
+      #{item.name,jdbcType=VARCHAR},
+      #{item.templateUuid,jdbcType=VARCHAR},
+      #{item.orgUuid,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="JobPoint">
+    update t_jobpoint
+    set
+    name = #{name,jdbcType=VARCHAR},
+    code = #{code,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_jobpoint
+    where
+    uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteByOrg" parameterType="String">
+    delete from t_jobpoint
+    where orgUuid = #{orgUuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

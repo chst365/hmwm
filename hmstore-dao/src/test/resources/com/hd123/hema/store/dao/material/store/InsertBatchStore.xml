@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <T_STORE UUID="1001" code="S001" name="门店1"
+    address="地址1" remark="备注1" />
+  <T_STORE UUID="1002" code="S002" name="门店2"
+    address="地址2" remark="备注2" />
+  <T_STORE UUID="1003" code="S003" name="门店3"
+    address="地址3" remark="备注3" />
+    
+  <T_STORE UUID="1004" code="S004" name="门店4"   address="地址4" remark="备注4" />
+  
+  <T_STORE UUID="1005" code="S005" name="门店5"   address="地址5" remark="备注5" />
+</dataset>

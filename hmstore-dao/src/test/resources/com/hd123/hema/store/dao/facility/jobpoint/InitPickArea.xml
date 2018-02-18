@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_PICKAREA UUID="04df1abfc07b4153aa2398fb2d42ee88" code="ckj总部分区" name="ckj总部分区"
+                jobPointUuid="6331567bc428443e8c5dc2e7945268db"/>
+    <T_PICKAREA UUID="0ac9fd3b7bca4927a7bb3bc319e37893" code="rr" name="rrr"
+                jobPointUuid="ef1d22411fa543d099fd87f3791c8714"/>
+</dataset>

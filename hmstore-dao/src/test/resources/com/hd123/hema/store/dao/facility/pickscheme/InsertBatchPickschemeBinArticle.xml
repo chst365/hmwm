@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_PICKSCHEMEBINARTICLE UUID="02ac2f3b4ba94c66815cb3cd00f7f676" binCode="erger" articleUuid="655f6b2bfc364aa991d52dc627743fde"
+                            articleCode="A002" articleName="Spring源码深度解析" pickSchemeUuid="e9e8d111a89840cf822b8094591ab01f"/>
+    <T_PICKSCHEMEBINARTICLE UUID="02bdbeff95f24fcdba6348dfa8bbc460" binCode="string" articleUuid="3a901a7afe694f4e875b712511921b96"
+                            articleCode="x002" articleName="红烧臭桂鱼" pickSchemeUuid="d9fbe3d283d64b10bb6985090b083628"/>
+    <T_PICKSCHEMEBINARTICLE UUID="0eba248a9d2f4d6da6b919e712d78dfe" binCode="ckjAA1" articleUuid="ba47a36292b04ac6aaf9199e3326dc05"
+                            articleCode="A001" articleName="程序员的自我修养" pickSchemeUuid="b68ff957f95d443d8b88ea5a2a75bdb2"/>
+    <T_PICKSCHEMEBINARTICLE UUID="4ee17253b1b34007a3ce5998b8f5e7f8" binCode="string" articleUuid="410891c3a5b24223a1aa8b6ade6aac65"
+                            articleCode="Z001" articleName="红豆薏仁奶茶" pickSchemeUuid="65eb512555b14d41a7ca03b7b2ac847a"/>
+</dataset>

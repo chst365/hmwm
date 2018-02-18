@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  
+  <t_facilitytemplate UUID="1002" code="ST002" name="设施模板2" />
+  
+  <t_facilitytemplate UUID="1003" code="ST003" name="设施模板3" />
+</dataset>

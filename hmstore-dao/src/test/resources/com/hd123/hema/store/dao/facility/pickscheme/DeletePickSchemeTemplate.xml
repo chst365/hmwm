@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_PICKSCHEME UUID="0f5a2dd95d34441c9b48e91725de3843" code="Z001" name="张问问的分拣方案模板"
+                  state="UnEffective" version="14" versionTime="2016-08-08 10:42:57"
+                  orgUuid="hemaUuid" facilityTemplateUuid="729c23e63c9f457f8ab3b71ce5c35d54" facilityTemplateCode="永杰设施模板7"
+                  facilityTemplateName="永杰设施模板7" jobPointUuid="7827e2c3c2ec409fadd9c3ca38fa7c82" jobPointCode="总部作业点"
+                  jobPointName="总部作业点" />
+</dataset>

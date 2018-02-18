@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.pickscheme.PickSchemeDao">
+  <resultMap id="BaseResultMap" type="PickScheme">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="orgUuid" property="orgUuid" jdbcType="VARCHAR" />
+    <result column="jobPointUuid" property="jobPoint.uuid" jdbcType="VARCHAR" />
+    <result column="jobPointCode" property="jobPoint.code" jdbcType="VARCHAR" />
+    <result column="jobPointName" property="jobPoint.name" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_pickscheme t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getPickSchemeByCode" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_pickscheme t
+    where t.code = #{code,jdbcType=VARCHAR}
+        and t.orgUuid = #{orgUuid,jdbcType=VARCHAR}
+        and t.jobPointUuid = #{jobPointUuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_pickscheme t
+    where 1=1
+   <if test="orgUuid != null and orgUuid != ''">
+      and t.orgUuid = #{orgUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="state != null and state != ''">
+      and t.state = #{state,jdbcType=VARCHAR}
+    </if>
+    <if test="jobPointUuid != null and jobPointUuid != ''">
+      and t.jobPointUuid = #{jobPointUuid,jdbcType=VARCHAR}
+    </if>
+    order by t.code
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_pickscheme t
+    where 1=1
+    <if test="orgEquals != null and orgEquals != ''">
+      and t.orgUuid = #{orgEquals,jdbcType=VARCHAR}
+    </if>
+    <if test="state != null and state != ''">
+      and t.state = #{state,jdbcType=VARCHAR}
+    </if>
+    <if test="sortField != null and sortField == 'code'">
+      order by t.code ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="PickScheme">
+    insert into
+    t_pickscheme (
+      uuid,
+      code,
+      name,
+      state,
+      version,
+      versionTime,
+      jobPointUuid,
+      jobPointCode,
+      jobPointName,
+      orgUuid
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{code,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{state,jdbcType=VARCHAR},
+      #{version,jdbcType=INTEGER},
+      #{versionTime,jdbcType=TIMESTAMP},
+      #{jobPoint.uuid,jdbcType=VARCHAR},
+      #{jobPoint.code,jdbcType=VARCHAR},
+      #{jobPoint.name,jdbcType=VARCHAR},
+      #{orgUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="PickScheme">
+    insert into
+    t_pickscheme (
+      uuid,
+      code,
+      name,
+      state,
+      version,
+      versionTime,
+      jobPointUuid,
+      jobPointCode,
+      jobPointName,
+      orgUuid
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.code,jdbcType=VARCHAR},
+      #{item.name,jdbcType=VARCHAR},
+      #{item.state,jdbcType=VARCHAR},
+      #{item.version,jdbcType=INTEGER},
+      #{item.versionTime,jdbcType=TIMESTAMP},
+      #{item.jobPoint.uuid,jdbcType=VARCHAR},
+      #{item.jobPoint.code,jdbcType=VARCHAR},
+      #{item.jobPoint.name,jdbcType=VARCHAR},
+      #{item.orgUuid,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="PickScheme">
+    update t_pickscheme
+    set
+      code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      state = #{state.name,jdbcType=VARCHAR},
+      jobPointUuid = #{jobPoint.uuid,jdbcType=VARCHAR},
+      jobPointCode = #{jobPoint.code,jdbcType=VARCHAR},
+      jobPointName = #{jobPoint.name,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER} + 1,
+      versionTime = #{versionTime,jdbcType=TIMESTAMP}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_pickscheme
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteByOrg" parameterType="String">
+    delete from t_pickscheme
+    where orgUuid = #{orgUuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

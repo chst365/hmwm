@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+  <title xml:id="wms-mdata-container">设施模板</title>
+  <section>
+    <title>简介</title>
+    <para>总部定义与维护，门店端导入生成设施。
+    </para>
+  </section>
+  <section>
+    <title>领域模型</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata
+          fileref="images/facility/template/com.hd123.hema.store.bean.facility.template.jpg" />
+      </imageobject>
+    </mediaobject>
+
+    <section>
+      <title>属性含义</title>
+      <section>
+        <title>设施模板</title>
+        <para>记录设施模板信息。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>code</td>
+              <td>代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>名称</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  </section>
+</chapter>

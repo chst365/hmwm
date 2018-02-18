@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_JOBPOINTGATEWAY UUID="00781de1fee843c7a4a2d72d55be1367" jobpointUuid="4721803ac8374e929b2cddf6ced288ce" gatewayUuid="b7f776582b634a2697ab186163251b63"/>
+    <T_JOBPOINTGATEWAY UUID="00a45c2bdd044a508eca8d2a985e3a6c" jobpointUuid="7d78c3c5d4eb4fd1bfc8a921fa4067b3" gatewayUuid="89fa653c71c34f65b64d4cc989082056"/>
+    <T_JOBPOINTGATEWAY UUID="01dd2b7068a645c7826ecd84a99b4c28" jobpointUuid="624419e659ab42beb73fd05540408a81" gatewayUuid="3ea794de5fda4373ad34c57f230b2172"/>
+    <T_JOBPOINTGATEWAY UUID="25b4f13b53b846e5a13889002d373673" jobpointUuid="f8c0eeb68ea746e0b49cd0e1810e1500" gatewayUuid="a3d0de33248c4ab39f6e24e8f922a0c1"/>
+</dataset>

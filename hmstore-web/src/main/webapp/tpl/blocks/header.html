@@ -1,0 +1,340 @@
+      <!-- navbar header -->
+      <div class="navbar-header {{app.settings.navbarHeaderColor}}">
+        <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+          <i class="glyphicon glyphicon-cog"></i>
+        </button>
+        <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+          <i class="glyphicon glyphicon-align-justify"></i>
+        </button>
+        <!-- brand -->
+        <a href="#/" class="navbar-brand text-lt">
+          <i class="fa fa-leaf"></i>
+          <img src="img/logo.png" alt="." class="hide">
+          <span class="hidden-folded m-l-xs">{{app.name}}</span>
+        </a>
+        <!-- / brand -->
+      </div>
+      <!-- / navbar header -->
+
+      <!-- navbar collapse -->
+      <div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
+        <!-- buttons -->
+        <div class="nav navbar-nav hidden-xs">
+          <a href class="btn no-shadow navbar-btn" ng-click="app.settings.asideFolded = !app.settings.asideFolded">
+            <i class="fa {{app.settings.asideFolded ? 'fa-indent' : 'fa-dedent'}} fa-fw"></i>
+          </a>
+        </div>
+        <!-- / buttons -->
+
+        <!-- link and dropdown -->
+        <ul class="nav navbar-nav hidden-sm">
+          <!-- 总部 功能菜单 -->
+          <li class="dropdown pos-stc" dropdown ng-repeat="oneMenu in headerData.obj">
+            <a href class="dropdown-toggle" dropdown-toggle>
+              <span>{{oneMenu.name}}</span>
+              <span class="caret"></span>
+            </a>
+            <div class="dropdown-menu wrapper w-full bg-white" >
+              <div class="row">
+                <div class="col-sm-4" ng-repeat="twoMenu in oneMenu.sChild">
+                  <div class="m-l-xs m-t-xs m-b-xs font-bold" >{{twoMenu.name}}</div>
+                  <div class="row">
+                    <div class="col-xs-8">
+                      <ul class="list-unstyled l-h-2x">
+                        <li ng-repeat="threeMenu in twoMenu.sChild">
+                          <i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>
+                          <a ui-sref="{{threeMenu.url}}" >{{threeMenu.name}}</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <!--<div class="col-xs-4">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                  </div>
+                </div>
+                </div>
+              </div>
+          </li>
+</ul>
+
+          <!--<li class="dropdown pos-stc" dropdown>-->
+            <!--<a href class="dropdown-toggle" dropdown-toggle>-->
+              <!--<span translate="aside.nav.headquarter.name">总部</span>-->
+              <!--<span class="caret"></span>-->
+            <!--</a>-->
+            <!--<div class="dropdown-menu wrapper w-full bg-white">-->
+              <!--<div class="row">-->
+                <!--<div class="col-sm-4">-->
+                  <!--<div class="m-l-xs m-t-xs m-b-xs font-bold" translate="aside.nav.headquarter.system.name">系统</div>-->
+                  <!--<div class="row">-->
+                    <!--<div class="col-xs-8">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.enterprise.employee.list" translate="aside.nav.headquarter.system.employee">员工</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.enterprise.role.list" translate="aside.nav.headquarter.system.role">角色</a>-->
+                        <!--</li>-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-4">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-4">-->
+                  <!--<div class="m-l-xs m-t-xs m-b-xs font-bold" translate="aside.nav.headquarter.material.name">资料</div>-->
+                  <!--<div class="row">-->
+                    <!--<div class="col-xs-8">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.enterprise.store.list" translate="aside.nav.headquarter.material.store"><门店</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.store.goods.list" translate="aside.nav.headquarter.material.goods">商品</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.enterprise.facitemplate.list" translate="aside.nav.headquarter.material.facilityTemplate">设施模板</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.enterprise.pickschemetemplate.list" translate="aside.nav.headquarter.material.pickSchemeTemplate">分拣方案模板</a>-->
+                        <!--</li>-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-4">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-4 b-l b-light">-->
+                  <!--<div class="m-l-xs m-t-xs m-b-xs font-bold" translate="aside.nav.headquarter.query.name">查询</div>-->
+                  <!--<div class="row">-->
+                    <!--<div class="col-xs-6">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.enterprise.query.labelstatus" translate="aside.nav.headquarter.query.labelStatus">门店标签状态</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.enterprise.query.orderquery" translate="aside.nav.headquarter.query.orderQuery">门店拣货情况查询</a>-->
+                        <!--</li>-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-6">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</li>-->
+
+          <!--&lt;!&ndash; 门店 功能菜单 &ndash;&gt;-->
+          <!--<li class="dropdown pos-stc" dropdown>-->
+            <!--<a href class="dropdown-toggle" dropdown-toggle>-->
+              <!--<span translate="aside.nav.store.name">门店</span>-->
+              <!--<span class="caret"></span>-->
+            <!--</a>-->
+            <!--<div class="dropdown-menu wrapper w-full bg-white">-->
+              <!--<div class="row">-->
+                <!--<div class="col-sm-4">-->
+                  <!--<div class="m-l-xs m-t-xs m-b-xs font-bold" translate="aside.nav.store.material.name">资料</div>-->
+                  <!--<div class="row">-->
+                    <!--<div class="col-xs-6">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.store.goods.list" translate="aside.nav.store.material.goods">商品</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.store.picker.list" translate="aside.nav.store.material.picker">拣货员</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.store.computer.list" translate="aside.nav.store.material.computers">门店主机</a>-->
+                        <!--</li>-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-6">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-4">-->
+                  <!--<div class="m-l-xs m-t-xs m-b-xs font-bold" translate="aside.nav.store.facility.name">设施</div>-->
+                  <!--<div class="row">-->
+                    <!--<div class="col-xs-8">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--&lt;!&ndash;<a ui-sref="app.store.genfromtemplate" translate="aside.nav.store.facility.genFromTemplate">从模板生成设施</a>&ndash;&gt;-->
+                          <!--<a ng-click="toGenerate()">从模板生成设施</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.store.bin" translate="aside.nav.store.facility.bin">货位</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.store.label" translate="aside.nav.store.facility.label">电子标签</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.store.pickscheme.list" translate="aside.nav.store.facility.pickScheme">分拣方案</a>-->
+                        <!--</li>-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-4">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-4 b-l b-light">-->
+                  <!--<div class="m-l-xs m-t-xs m-b-xs font-bold" translate="aside.nav.store.query.name">查询</div>-->
+                  <!--<div class="row">-->
+                    <!--<div class="col-xs-6">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.store.query.labelstatus" translate="aside.nav.store.query.labelStatus">门店标签状态</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                          <!--<i class="fa fa-fw fa-angle-right text-muted m-r-xs"></i>-->
+                          <!--<a ui-sref="app.store.query.orderquery" translate="aside.nav.store.query.orderQuery">门店拣货情况查询</a>-->
+                        <!--</li>-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-6">-->
+                      <!--<ul class="list-unstyled l-h-2x">-->
+                      <!--</ul>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</li>-->
+        <!--</ul>-->
+        <!-- / link and dropdown -->
+
+        <!-- search form -->
+        <!--<form class="navbar-form navbar-form-sm navbar-left shift" ui-shift="prependTo" target=".navbar-collapse" role="search" ng-controller="TypeaheadDemoCtrl">-->
+          <!--<div class="form-group">-->
+            <!--<div class="input-group">-->
+              <!--<input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm bg-light no-border rounded padder" placeholder="Search projects...">-->
+              <!--<span class="input-group-btn">-->
+                <!--<button type="submit" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>-->
+              <!--</span>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</form>-->
+        <!-- / search form -->
+
+        <!-- nabar right -->
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown hidden-sm" is-open="lang.isopen" dropdown>
+            <a  >
+              {{selectLang}}
+              <!--<b class="caret"></b>-->
+            </a>
+            <!-- dropdown -->
+            <!--<ul class="dropdown-menu animated fadeInRight w">-->
+              <!--<li ng-repeat="(langKey, label) in langs">-->
+                <!--<a ng-click="setLang(langKey, $event)" href>{{label}}</a>-->
+              <!--</li>-->
+            <!--</ul>-->
+            <!-- / dropdown -->
+          </li>
+          <li class="hidden-xs">
+            <a ui-fullscreen></a>
+          </li>
+          <li class="dropdown" dropdown>
+            <!--<a href class="dropdown-toggle" dropdown-toggle>-->
+              <!--<i class="icon-bell fa-fw"></i>-->
+              <!--<span class="visible-xs-inline">Notifications</span>-->
+              <!--<span class="badge badge-sm up bg-danger pull-right-xs">2</span>-->
+            <!--</a>-->
+            <!-- dropdown -->
+            <!--<div class="dropdown-menu w-xl animated fadeInUp">-->
+              <!--<div class="panel bg-white">-->
+                <!--<div class="panel-heading b-light bg-light">-->
+                  <!--<strong>您有 <span>2</span> 条消息</strong>-->
+                <!--</div>-->
+                <!--<div class="list-group">-->
+                  <!--<a href class="media list-group-item">-->
+                    <!--<span class="pull-left thumb-sm">-->
+                      <!--<img src="img/a4.png" alt="..." class="img-circle">-->
+                    <!--</span>-->
+                    <!--<span class="media-body block m-b-none">-->
+                      <!--给你发了一条留言<br>-->
+                      <!--<small class="text-muted">10 分钟前</small>-->
+                    <!--</span>-->
+                  <!--</a>-->
+                  <!--<a href class="media list-group-item">-->
+                    <!--<span class="media-body block m-b-none">-->
+                      <!--盒马鲜生门店系统原型第一版发布了<br>-->
+                      <!--<small class="text-muted">2016年4月25日 14:10</small>-->
+                    <!--</span>-->
+                  <!--</a>-->
+                <!--</div>-->
+                <!--<div class="panel-footer text-sm">-->
+                  <!--<a href class="pull-right"><i class="fa fa-cog"></i></a>-->
+                  <!--<a href="#notes" data-toggle="class:show animated fadeInRight">查看所有消息</a>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!-- / dropdown -->
+          </li>
+          <li class="dropdown" dropdown>
+            <a href class="dropdown-toggle clear" dropdown-toggle>
+              <span class="thumb-sm avatar pull-right m-t-n-sm m-b-n-sm m-l-sm">
+                <img src="img/a99.png" alt="...">
+                <i class="on md b-white bottom"></i>
+              </span>
+              <span class="hidden-sm hidden-md">{{userName}}</span> <b class="caret"></b>
+            </a>
+            <!-- dropdown -->
+            <ul class="dropdown-menu animated fadeInRight w">
+              <!--<li>-->
+                <!--<a href>-->
+                  <!--<span class="badge bg-danger pull-right">30%</span>-->
+                  <!--<span>设置</span>-->
+                <!--</a>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--&lt;!&ndash; <a ui-sref="app.page.profile">个人资料</a> &ndash;&gt;-->
+                <!--<a>个人资料</a>-->
+              <!--</li>-->
+              <!--<li>-->
+                <!--&lt;!&ndash; <a ui-sref="app.docs"> &ndash;&gt;-->
+                <!--<a>-->
+                  <!--<span class="label bg-info pull-right">new</span>-->
+                  <!--帮助-->
+                <!--</a>-->
+              <!--</li>-->
+              <!--<li class="divider"></li>-->
+              <li ng-click="logout()">
+                <!-- <a ui-sref="access.signin">Logout</a> -->
+                <a>注销</a>
+              </li>
+            </ul>
+            <!-- / dropdown -->
+          </li>
+        </ul>
+        <!-- / navbar right -->
+
+      </div>
+      <!-- / navbar collapse -->

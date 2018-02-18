@@ -1,0 +1,29 @@
+{
+	"previous": false,
+	"next": true,
+	"total_count": 3,
+	"page_count": 1,
+	"results": [
+		{
+			"uuid": "1",
+			"code": "T01-001",
+			"name": "门店类型1-中午方案",
+			"version": "1",
+			"lastModifyTime": "2016-05-13 10:14:01"
+		},
+		{
+			"uuid": "2",
+			"code": "T01-002",
+			"name": "门店类型1-下午方案",
+			"version": "2",
+			"lastModifyTime": "2016-05-16 16:32:34"
+		},
+		{
+			"uuid": "1",
+			"code": "T02-001",
+			"name": "门店类型2-全天方案",
+			"version": "1",
+			"lastModifyTime": "2016-05-15 13:16:03"
+		}
+	] 
+}

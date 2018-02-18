@@ -1,0 +1,10 @@
+{
+	"uuid": "1",
+	"code": "admin",
+	"name": "系统管理员",
+	"password": "123456",
+	"mobile": "13788881111",
+	"roles": ["管理员", "信息员", "Red"],
+	"orgCode": "0000",
+	"orgName": "总部"
+}

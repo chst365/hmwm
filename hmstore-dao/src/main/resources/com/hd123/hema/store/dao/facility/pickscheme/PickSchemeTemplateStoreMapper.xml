@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.pickscheme.PickSchemeTemplateStoreDao">
+  <resultMap id="BaseResultMap" type="PickSchemeTemplateStore">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="storeUuid" property="store.uuid" jdbcType="VARCHAR" />
+    <result column="storeCode" property="store.code" jdbcType="VARCHAR" />
+    <result column="storeName" property="store.name" jdbcType="VARCHAR" />
+    <result column="pickSchemeUuid" property="pickSchemeTemplateUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_pickschemetemplatestore t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_pickschemetemplatestore t
+    where 1=1
+    <if test="pickSchemeUuid != null and pickSchemeUuid != ''">
+      and t.pickSchemeUuid = #{pickSchemeUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="storeUuid != null and storeUuid != ''">
+      and t.storeUuid = #{storeUuid,jdbcType=VARCHAR}
+    </if>
+    order by t.storecode
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_pickschemetemplatestore t
+    where 1=1
+    <if test="templateUuid != null and templateUuid != ''">
+      and t.pickSchemeUuid = #{templateUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="sortField != null and sortField == 'storecode'">
+      order by t.storecode ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="PickSchemeTemplateStore">
+    insert into
+    t_pickschemetemplatestore (
+      uuid,
+      storeuuid,
+      storecode,
+      storename,
+      pickSchemeUuid
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{store.uuid,jdbcType=VARCHAR},
+      #{store.code,jdbcType=VARCHAR},
+      #{store.name,jdbcType=VARCHAR},
+      #{pickSchemeTemplateUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into
+    t_pickschemetemplatestore (
+      uuid,
+      storeuuid,
+      storecode,
+      storename,
+      pickSchemeUuid
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.store.uuid,jdbcType=VARCHAR},
+      #{item.store.code,jdbcType=VARCHAR},
+      #{item.store.name,jdbcType=VARCHAR},
+      #{item.pickSchemeTemplateUuid,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="PickSchemeTemplateStore">
+    update t_pickschemetemplatestore
+    set
+      storeuuid = #{store.uuid,jdbcType=VARCHAR},
+      storecode = #{store.code,jdbcType=VARCHAR},
+      storename = #{store.name,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_pickschemetemplatestore
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteByTemplate" parameterType="String">
+    delete from t_pickschemetemplatestore
+    where pickSchemeUuid = #{pickSchemeTemplateUuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

@@ -1,0 +1,349 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+  <title xml:id="wms-mdata-container">作业点</title>
+  <section>
+    <title>简介</title>
+    <para>定义与维护作业点、分区、区段及区段下的电子标签节点。
+    </para>
+  </section>
+  <section>
+    <title>领域模型</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata
+          fileref="images/facility/jobpoint/com.hd123.hema.store.bean.facility.jobpoint.jpg" />
+      </imageobject>
+    </mediaobject>
+
+    <section>
+      <title>属性含义</title>
+      <section>
+        <title>作业点(JobPoint)</title>
+        <para>记录作业点信息。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>code</td>
+              <td>代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>名称</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>templateUuid</td>
+              <td>设施模板UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>orgUuid</td>
+              <td>组织UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <title>拣货分区(PickArea)</title>
+        <para>作业点下的二级节点。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>code</td>
+              <td>代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>名称</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>jobPointUuid</td>
+              <td>作业点UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <title>区段(Section)</title>
+        <para>作业点下的三级节点。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>code</td>
+              <td>代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>名称</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>pickAreaUuid</td>
+              <td>区域UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <title>区段货位</title>
+        <para>记录区段与货位电子标签节点的对应关系。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>binCode</td>
+              <td>货位代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>nodeCode</td>
+              <td>节点代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>nodeType</td>
+              <td>节点类型</td>
+              <td>varchar2(20)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>nodeUsage</td>
+              <td>节点用途</td>
+              <td>varchar2(20)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>secionUuid</td>
+              <td>区段UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <title>区段节点</title>
+        <para>记录区段与区段电子标签节点的对应关系。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>nodeCode</td>
+              <td>节点代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>nodeType</td>
+              <td>节点类型</td>
+              <td>varchar2(20)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>nodeUsage</td>
+              <td>节点用途</td>
+              <td>varchar2(20)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>secionUuid</td>
+              <td>区段UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section>
+        <title>补货节点</title>
+        <para>记录区段与补货电子标签节点的对应关系。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>requestNodeCode</td>
+              <td>请求节点代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>requestNodeType</td>
+              <td>请求节点类型</td>
+              <td>varchar2(20)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>requestNodeUsage</td>
+              <td>请求节点用途</td>
+              <td>varchar2(20)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>responseNodeCode</td>
+              <td>答应节点代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>responseNodeType</td>
+              <td>答应节点类型</td>
+              <td>varchar2(20)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>responseNodeUsage</td>
+              <td>答应节点用途</td>
+              <td>varchar2(20)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>secionUuid</td>
+              <td>区段UUID</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  </section>
+</chapter>

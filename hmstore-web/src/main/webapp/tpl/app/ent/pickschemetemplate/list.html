@@ -1,0 +1,73 @@
+<div class="wrapper-md" ng-controller="PickSchemeTemplateListController">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+    	  <ul class="nav nav-pills pull-right">
+            <!--<li style=" padding-top:4px; padding-right:4px"><button class="btn m-b-xs btn-sm btn-success btn-addon" ui-sref="app.enterprise.pickschemetemplate.edit()"><i class="fa fa-plus"></i>新增</button></li>-->
+            <li style=" padding-top:4px; padding-right:4px"><button class="btn m-b-xs btn-sm btn-success btn-addon"  ng-click="addNewTem()"><i class="fa fa-plus"></i>新增</button></li>
+            <li style=" padding-top:4px; padding-right:4px"><button class="btn m-b-xs btn-sm btn-default btn-addon" ng-click="import('lg')"><i class="fa fa-arrow-circle-down"></i>导入</button></li>
+        </ul>
+        拣货方案模板列表
+    </div>
+    <div class="row wrapper">
+      <div class="col-sm-9">
+      </div>
+      <div class="col-sm-3">
+      <div class="input-group" style="width: 100%;">
+          <input type="text" class="input-sm form-control" placeholder="搜索" ng-model="search_context" style="width: 100%">
+          <!--<span class="input-group-btn">-->
+            <!--<button class="btn btn-sm btn-default" type="button" ng-click="search()">搜索</button>-->
+          <!--</span>-->
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped b-t b-light">
+        <thead>
+          <tr>
+            <!-- <th style="width:20px;">
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-click="selectAll()"><i></i>
+              </label>
+            </th> -->
+            <th style="width:30px;">行</th>
+            <th>代码</th>
+            <th>名称</th>
+            <th>版本</th>
+            <th>更新时间</th>
+            <th style="width:150px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="data in data.obj | filter:{code:search_context}">
+            <!-- <td><label class="i-checks m-b-none"><input type="checkbox" ng-model="data.selected"><i></i></label></td> -->
+            <td>{{ $index + 1 }}</td>
+            <td>{{data.code}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.version}}</td>
+            <td>{{data.versionTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td>
+              <!--<button class="btn btn-sm btn-icon btn-default" ui-sref="app.enterprise.pickschemetemplate.edit({uuid:data.uuid})"><i class="fa fa-edit"></i></button>-->
+              <button class="btn btn-sm btn-icon btn-default"  ng-click="editTem(data.uuid)"><i class="fa fa-edit"></i></button>
+              <button class="btn btn-sm btn-ico btn-info" ng-click="distributeTem(data.uuid)"><i class="fa fa-paper-plane-o"></i></button>
+              <button class="btn btn-sm btn-icon btn-danger" ng-click="remove(data.uuid)"><i class="fa fa-remove"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+        <div class="col-sm-8 text-left">
+          <small class="text-muted inline m-t-sm m-b-sm">{{search_context.length == null ? data.obj.length : (data.obj | filter:{code:search_context}).length}}条记录</small>
+        </div>
+        <div ng-if="data.page_count>1" class="col-sm-4 text-right text-center-xs">
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li ng-class="{disabled:!data.previous}"><a><i class="fa fa-chevron-left"></i></a></li>
+            <li ng-repeat="page in data.pages" ng-class="{active:page==data.page_index}"><a>{{page}}</a></li>
+            <li ng-class="{disabled:!data.next}"><a><i class="fa fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>

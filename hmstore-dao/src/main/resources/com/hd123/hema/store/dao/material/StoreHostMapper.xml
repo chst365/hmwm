@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.material.StoreHostDao">
+  <resultMap id="BaseResultMap" type="StoreHost">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="macAddress" property="macAddress" jdbcType="VARCHAR" />
+    <result column="allowAccess" property="allowAccess" jdbcType="VARCHAR" />
+    <result column="storeUuid" property="storeUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_storehost t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_storehost t
+    where 1=1
+    <if test="orgUuid != null and orgUuid != ''">
+      and t.storeUuid = #{orgUuid,jdbcType=VARCHAR}
+    </if>
+    order by t.ip
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_storehost t
+    where 1=1
+    <if test="sortField != null and sortField == 'ip'">
+      order by t.ip ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="StoreHost">
+    insert into
+    t_storehost (
+      uuid,
+      name,
+      ip,
+      macAddress,
+      allowAccess,
+      storeUuid
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{ip,jdbcType=VARCHAR},
+      #{macAddress,jdbcType=VARCHAR},
+      #{allowAccess,jdbcType=VARCHAR},
+      #{storeUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <update id="update" parameterType="StoreHost">
+    update t_storehost
+    set
+      name = #{name,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      macAddress = #{macAddress,jdbcType=VARCHAR},
+      allowAccess = #{allowAccess,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_storehost
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

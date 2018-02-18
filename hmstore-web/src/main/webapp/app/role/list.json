@@ -1,0 +1,28 @@
+{
+	"previous": false,
+	"next": true,
+	"total_count": 4,
+	"page_count": 1,
+	"results": [
+		{
+			"uuid": "1",
+			"code": "admin",
+			"name": "管理员"
+		},
+		{
+			"uuid": "2",
+			"code": "1001",
+			"name": "信息员"
+		},
+		{
+			"uuid": "3",
+			"code": "1002",
+			"name": "拣货员"
+		},
+		{
+			"uuid": "4",
+			"code": "1003",
+			"name": "补货员"
+		}
+	] 
+}

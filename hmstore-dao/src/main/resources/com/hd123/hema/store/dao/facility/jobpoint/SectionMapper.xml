@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.jobpoint.SectionDao">
+  <resultMap id="BaseResultMap" type="Section">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="pickAreaUuid" property="pickAreaUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_section t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_section t
+    where 1=1
+    <if test="pickAreaUuid != null and pickAreaUuid != ''">
+      and t.pickAreaUuid = #{pickAreaUuid,jdbcType=VARCHAR}
+    </if>
+    order by t.code
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_section t
+    where 1=1
+    <if test="sortField != null and sortField == 'code'">
+      order by t.code ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="Section">
+    insert into
+    t_section (
+      uuid,
+      code,
+      name,
+      pickAreaUuid
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{code,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{pickAreaUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into
+    t_section (
+      uuid,
+      code,
+      name,
+      pickAreaUuid
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.code,jdbcType=VARCHAR},
+      #{item.name,jdbcType=VARCHAR},
+      #{item.pickAreaUuid,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="Section">
+    update t_section
+    set
+      name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_section
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteByPickArea" parameterType="String">
+    delete from t_section
+    where pickAreaUuid = #{pickAreaUuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.material.StoreDao">
+  <resultMap id="BaseResultMap" type="Store">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_store t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getByCode" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_store t
+    where t.code = #{code,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_store t
+    where 1=1
+    <if test="code != null and code != ''">
+      and t.code like CONCAT('%',#{code,jdbcType=VARCHAR},'%')
+    </if>
+    order by t.code
+  </select>
+
+  <insert id="insert" parameterType="Store">
+    insert into
+    t_store (
+      uuid,
+      code,
+      name,
+      address,
+      remark
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{code,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR},
+      #{remark,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="Store">
+    insert into
+    t_store (
+      uuid,
+      code,
+      name,
+      address,
+      remark
+    ) values 
+     <foreach collection="list" item="item" index="index" separator=",">
+      (
+        #{item.uuid,jdbcType=VARCHAR},
+        #{item.code,jdbcType=VARCHAR},
+        #{item.name,jdbcType=VARCHAR},
+        #{item.address,jdbcType=VARCHAR},
+        #{item.remark,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="Store">
+    update t_store
+    set
+      name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_store
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

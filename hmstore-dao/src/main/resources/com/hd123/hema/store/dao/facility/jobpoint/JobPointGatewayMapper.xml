@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.jobpoint.JobPointGatewayDao">
+  <resultMap id="BaseResultMap" type="JobPointGateway">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="jobPointUuid" property="jobPointUuid" jdbcType="VARCHAR" />
+    <result column="gatewayUuid" property="gatewayUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_jobpointgateway t
+    where 1=1
+    <if test="jobPointUuid != null and jobPointUuid != ''">
+      and t.jobPointUuid = #{jobPointUuid,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into
+    t_jobpointgateway (
+      uuid,
+      jobPointUuid,
+      gatewayUuid
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.jobPointUuid,jdbcType=VARCHAR},
+      #{item.gatewayUuid,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <delete id="deleteByJobPoint" parameterType="String">
+    delete from t_jobpointgateway
+    where jobPointUuid = #{jobPointUuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

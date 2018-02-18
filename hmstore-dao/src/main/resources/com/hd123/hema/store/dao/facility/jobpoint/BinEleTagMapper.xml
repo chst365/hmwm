@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.jobpoint.BinEleTagDao">
+  <resultMap id="BaseResultMap" type="BinEleTag">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="binCode" property="binCode" jdbcType="VARCHAR" />
+    <result column="nodeCode" property="nodeCode" jdbcType="VARCHAR" />
+    <result column="nodeAddress" property="nodeAddress" jdbcType="VARCHAR" />
+    <result column="nodeType" property="nodeType" jdbcType="VARCHAR" />
+    <result column="nodeUsage" property="nodeUsage" jdbcType="VARCHAR" />
+    <result column="sectionUuid" property="sectionUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_bineletag t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_bineletag t
+    where 1=1
+    <if test="sectionUuid != null and sectionUuid != ''">
+      and t.sectionUuid = #{sectionUuid,jdbcType=VARCHAR}
+    </if>
+    order by t.binCode
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_bineletag t
+    where 1=1
+    <if test="sortField != null and sortField == 'binCode'">
+      and order by t.binCode ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="BinEleTag">
+    insert into
+    t_bineletag (
+      uuid,
+      binCode,
+      nodeCode,
+      nodeAddress,
+      nodeType,
+      nodeUsage,
+      sectionUuid
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{binCode,jdbcType=VARCHAR},
+      #{nodeCode,jdbcType=VARCHAR},
+      #{nodeAddress,jdbcType=VARCHAR},
+      #{nodeType,jdbcType=VARCHAR},
+      #{nodeUsage,jdbcType=VARCHAR},
+      #{sectionUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into
+    t_bineletag (
+      uuid,
+      binCode,
+      nodeCode,
+      nodeAddress,
+      nodeType,
+      nodeUsage,
+      sectionUuid
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.binCode,jdbcType=VARCHAR},
+      #{item.nodeCode,jdbcType=VARCHAR},
+      #{item.nodeAddress,jdbcType=VARCHAR},
+      #{item.nodeType,jdbcType=VARCHAR},
+      #{item.nodeUsage,jdbcType=VARCHAR},
+      #{item.sectionUuid,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="BinEleTag">
+    update t_bineletag
+    set
+      binCode = #{binCode,jdbcType=VARCHAR},
+      nodeCode = #{nodeCode,jdbcType=VARCHAR},
+      nodeAddress = #{nodeAddress,jdbcType=VARCHAR},
+      nodeType = #{nodeType,jdbcType=VARCHAR},
+      nodeUsage = #{nodeUsage,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_bineletag
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteBySection" parameterType="String">
+    delete from t_bineletag
+    where sectionUuid = #{sectionUuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

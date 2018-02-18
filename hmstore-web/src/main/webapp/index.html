@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="app">
+<head>
+  <meta charset="utf-8" />
+  <title>盒马外卖门店系统</title>
+  <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="css/animate.css" type="text/css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" />
+  <link rel="stylesheet" href="css/ng-table.css" type="text/css" />
+  <link rel="stylesheet" href="css/font.css" type="text/css" />
+  <link rel="stylesheet" href="css/app.css" type="text/css" />
+  <link rel="stylesheet" href="css/my.css" type="text/css" />
+  <link rel="stylesheet" href="css/select.css" type="text/css" />
+  <link rel="stylesheet" href="css/dashboard.css" type="text/css">
+  <link rel="stylesheet" href="css/select3.css" type="text/css">
+  <link rel="stylesheet" href="vendor/modules/angular-ivh-treeview/ivh-treeview.min.css" type="text/css" />
+  <link rel="stylesheet" href="vendor/modules/angular-ivh-treeview/ivh-treeview-theme-basic.css" type="text/css" />
+  <link rel="stylesheet" href="css/customrized.css" type="text/css" />
+</head>
+<body ng-controller="AppCtrl">
+  <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view></div>
+  <!-- jQuery -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- Angular -->
+
+  <script src="vendor/angular/angular.js"></script>
+  <script src="vendor/angular/angular-animate/angular-animate.js"></script>
+  <script src="vendor/angular/angular-cookies/angular-cookies.js"></script>
+  <script src="vendor/angular/angular-resource/angular-resource.js"></script>
+  <script src="vendor/angular/angular-sanitize/angular-sanitize.js"></script>
+  <script src="vendor/angular/angular-route/angular-route.js"></script>
+  <script src="vendor/angular/angular-touch/angular-touch.js"></script>
+  <script src="vendor/angular/angular-route/angular-route.js"></script>
+  <script src="vendor/libs/echarts.min.js"></script>
+  <script src="vendor/underscore/underscore-min.js"></script>
+  <script src="vendor/underscore/angular-underscore-module.js"></script>
+<!-- Vendor -->
+  <script src="vendor/angular/angular-ui-router/angular-ui-router.js"></script>
+  <script src="vendor/angular/ngstorage/ngStorage.js"></script>
+  <script src="vendor/angular/angular-ui-bootstrap/ui-bootstrap-tpls-2.0.0.js"></script>
+  <script src="vendor/angular/ngtable/ng-table.js"></script>
+  <script src="js/select3-full.js"></script>
+  <!-- bootstrap -->
+  <script src="vendor/angular/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <!-- lazyload -->
+  <script src="vendor/angular/oclazyload/ocLazyLoad.js"></script>
+  <!-- translate -->
+  <script src="vendor/angular/angular-translate/angular-translate.js"></script>
+  <script src="vendor/angular/angular-translate/loader-static-files.js"></script>
+  <script src="vendor/angular/angular-translate/storage-cookie.js"></script>
+  <script src="vendor/angular/angular-translate/storage-local.js"></script>
+  <script src="vendor/modules/angular-ivh-treeview/ivh-treeview.min.js"></script>
+  <script src="vendor/angular/angular-ngLocale/angular-locale_zh-cn.js"></script>
+  <!-- App -->
+  <script src="js/app.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/config.lazyload.js"></script>
+  <script src="js/config.router.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/services/ui-load.js"></script>
+  <script src="js/services/hemaAPI.js"></script>
+  <script src="js/services/hemaProvider.js"></script>
+  <script src="js/services/modalProvider.js"></script>
+  <script src="js/services/selectProvider.js"></script>
+  <script src="js/filters/fromNow.js"></script>
+  <script src="js/filters/TypeFilter.js"></script>
+  <script src="js/directives/setnganimate.js"></script>
+  <script src="js/directives/ui-butterbar.js"></script>
+  <script src="js/directives/ui-focus.js"></script>
+  <script src="js/directives/ui-fullscreen.js"></script>
+  <script src="js/directives/ui-module.js"></script>
+  <script src="js/directives/ui-nav.js"></script>
+  <script src="js/directives/ui-scroll.js"></script>
+  <script src="js/directives/ui-shift.js"></script>
+  <script src="js/directives/ui-toggleclass.js"></script>
+  <script src="js/directives/ui-validate.js"></script>
+  <script src="js/directives/inputChange.directive.js"></script>
+  <script src="js/controllers/bootstrap.js"></script>
+  <script src="js/cst.controller.js"></script>
+  <script src="js/controllers/file-upload.js"></script>
+  <script src="js/directives/selectDirective/select.js"></script>
+  <script src="app/genfromtemplate/genfromtemplate.controller.js"></script>
+  <script src="app/modal/import/importmodal.controller.js"></script>
+  <script src="app/modal/confirmmodal.controller.js"></script>
+  <script src="js/app/weather/skycons.js"></script>
+  <script src="vendor/libs/moment.min.js"></script>
+  <script src="js/app/weather/angular-skycons.js"></script>
+  <script src="js/app/weather/ctrl.js"></script>
+  <script src="app/dashbroad/dashbroad.controller.js"></script>
+  <script src="app/store/store.controller.js"></script>
+  <script src="app/employee/employee.controller.js"></script>
+  <script src="app/role/role.controller.js"></script>
+  <script src="app/facitemplate/facitemplate.controller.js"></script>
+  <script src="app/query/labelstatus.controller.js"></script>
+  <script src="app/query/orderquery.controller.js"></script>
+  <script src="app/goods/goods.controller.js"></script>
+  <script src="app/computer/computer.controller.js"></script>
+  <script src="app/label/label.controller.js"></script>
+  <script src="app/bin/bin.controller.js"></script>
+  <script src="app/pickscheme/pickscheme.controller.js"></script>
+  <script src="app/query/labelstatus.controller.js"></script>
+  <script src="app/query/orderquery.controller.js"></script>
+  <script src="js/controllers/chart.js"></script>
+  <script src="js/controllers/chart.js"></script>
+  <script src="js/controllers/tree.js"></script>
+  <script src="js/controllers/toaster.js"></script>
+  <script src="js/controllers/vectormap.js"></script>
+  <script src="js/app/map/load-google-maps.js"></script>
+  <script src="js/app/map/ui-map.js"></script>
+  <script src="js/app/map/map.js"></script>
+  <script src="js/controllers/chart.js"></script>
+  <script src="js/controllers/grid.js"></script>
+  <script src="js/controllers/form.js"></script>
+  <script src="js/controllers/file-upload.js"></script>
+  <script src="js/controllers/imgcrop.js"></script>
+  <script src="js/controllers/select.js"></script>
+  <script src="js/controllers/slider.js"></script>
+  <script src="js/controllers/editor.js"></script>
+  <script src="js/services/httpBaseService.js"></script>
+  <!-- Lazy loading -->
+</body>
+</html>

@@ -1,0 +1,53 @@
+<div class="wrapper-md" ng-controller="ComputerEditController">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <ul class="nav nav-pills pull-right">
+            <li style=" padding-top:4px; padding-right:4px"><button class="btn m-b-xs btn-sm btn-default btn-addon" ui-sref="app.store.computer.list()"><i class="fa fa-list"></i>返回列表</button></li>
+        </ul>
+      <span ng-switch on="edit_mode">
+        <span ng-switch-when="true">编辑主机</span>
+        <span ng-switch-when="false">新增主机</span>
+      </span>
+    </div>
+
+    <form  class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" ng-submit="submit()">
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">主机名称</label>
+              <div class="col-sm-10">
+                <input  maxlength="30" type="text" class="form-control" ng-model="hostName" required>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label  class="col-sm-2 control-label">主机IP</label>
+              <div class="col-sm-10">
+                <input maxlength="15"  type="text" class="form-control" pattern="^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" title="请输入正确的ip地址" ng-model="hostIp" required>
+            </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label  class="col-sm-2 control-label">主机Mac</label>
+              <div class="col-sm-10">
+                <input  maxlength="17" type="text" class="form-control" pattern="[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]" title="请输入正确的MAC地址" ng-model="hostMac" required>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">允许访问API</label>
+              <div class="col-sm-10">
+                <label class="i-switch i-switch-md bg-info m-t-xs m-r">
+                  <input type="checkbox" ng-model="hostallowAccess">
+                  <i></i>
+                </label>
+              </div>
+            </div>
+        </div>
+        <footer class="panel-footer text-right bg-light lter">
+            <input type="button" ng-click="delete(data1.obj.uuid)" ng-if="edit_mode" class="btn btn-danger pull-left" value="删除"/>
+            <input type="submit" class="btn btn-success"  value="提交" />
+         </footer>
+     </form>
+  </div>
+</div>
+

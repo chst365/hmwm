@@ -1,0 +1,85 @@
+<div class="wrapper-md" ng-controller="PickSchemeEditController">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <ul class="nav nav-pills pull-right">
+          <li style=" padding-top:4px; padding-right:4px"><button class="btn m-b-xs btn-sm btn-default btn-addon" ui-sref="app.store.pickscheme.list()"><i class="fa fa-list"></i>返回列表</button></li>
+      </ul>
+      <span ng-switch on="edit_mode">
+        <span ng-switch-when="true">编辑拣货方案</span>
+        <span ng-switch-when="false">新增拣货方案</span>
+      </span>
+      <span ng-switch on="data.status" ng-show="edit_mode">
+        <span ng-switch-when="0" class="badge btn-success">使用中</span>
+        <span ng-switch-when="1" class="badge btn-danger">待生效</span>
+      </span>
+    </div>
+
+    <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" ng-submit="addSubmit()">
+        <div class="panel-body">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">代码</label>
+              <div class="col-sm-10">
+                <input maxlength="30" type="text" class="form-control"  ng-model="data.code" pattern="^[a-zA-Z0-9]+[\s]*$" title="请输入英文或者数字" required>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">名称</label>
+              <div class="col-sm-10">
+                <input maxlength="30" type="text" class="form-control" ng-model="data.name" required>
+              </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">版本</label>
+              <div class="col-sm-10">
+                <label class="form-control">{{data.version}}</label>
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">作业点</label>
+                <div class="col-sm-10">
+                    <!--<label class="form-control">{{data.version}}</label>-->
+                    <div style="width: 100%" select-number id="_jobPointId"  optiondata="{{data.jobPoint.name}}"  class="select3-input example-input forSelect"></div>
+                </div>
+            </div>
+            <div class="line line-dashed b-b line-lg pull-in"></div>
+              <table class="table table-striped b-t b-light">
+                <thead>
+                  <tr>
+                    <!-- <th style="width:20px;">
+                      <label class="i-checks m-b-none">
+                        <input type="checkbox" ng-click="selectAll()"><i></i>
+                      </label>
+                    </th> -->
+                    <th style="width:30px;">行</th>
+                    <th>货位</th>
+                    <th>商品</th>
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr ng-repeat="row in defaultGoodsValueObj" >
+                    <!-- <td><label class="i-checks m-b-none"><input type="checkbox" ng-model="data.selected"><i></i></label></td> -->
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{row.binCode}}</td>
+                    <td>
+                      <!--<select style="width:300px" ui-jq="chosen"  class="form-control"  ng-value="string" data-placeholder="{{row.article.name}}" id="storeGoods&{{$index}}">-->
+                        <!--<option ng-repeat="goods in goodslist" value="{{goods.uuid}}">{{goods.name}} ({{goods.code}})</option>-->
+                      <!--</select>-->
+                        <!--<ac-select ac-model="row.article.name" ac-options="shape.name for shape in shapes"-->
+                                   <!--ac-change="selectionChanged(value,$index)" ac-settings='{ "loadOnOpen": true, "loadOnCreate": true }'></ac-select>-->
+                      <div select-number id="_pickSchmeId_{{$index}}"  optiondata="{{row.article.name}}"  class="select3-input example-input forSelect"></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <footer class="panel-footer text-right bg-light lter">
+            <input type="button" ng-click="delete()" ng-if="edit_mode" class="btn btn-danger pull-left" value="删除"/>
+            <input type="button" class="btn btn-info" ng-if="edit_mode" value="生效" ng-click="startEffective()"/>
+            <input type="submit" class="btn btn-success" value="提交" />
+         </footer>
+     </form>
+  </div>
+</div>
+

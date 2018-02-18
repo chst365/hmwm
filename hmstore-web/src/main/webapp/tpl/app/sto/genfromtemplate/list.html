@@ -1,0 +1,37 @@
+<div class="wrapper-md" ng-controller="GenFromTemplateController">
+  <pre class="alert alert-danger">此导入操作，会清除现有货位、标签、分拣方案等设施数据，慎重操作！！</pre>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <span>从模板导入设施</span>
+    </div>
+
+    <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" ng-submit="submit()">
+        <div class="panel-body">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">选择模板</label>
+                <div class="col-sm-10 col-md-10 col-lg-10">
+                    <!--<select ui-jq="chosen" class="form-control" ng-model="select" id="facilityTemp" data-placeholder="请选择模板">-->
+                        <!--<option ng-repeat="template in templates" value="{{template.name}}">{{template.name}}</option>-->
+                    <!--</select>-->
+                  <!--<select select-number class="form-control"  id="facilityTemp" ng-model="select">-->
+                    <!--<option ng-repeat="template in templates" value="{{template.name}}">{{template.name}}</option>-->
+                  <!--</select>-->
+                    <!--<label for="id_label_single" style="width: 100%;">-->
+                        <!--<select class="js-example-basic-single js-states form-control" id="id_label_single">-->
+                            <!--<option ng-repeat="template in templates" value="{{template.name}}">{{template.name}}</option>-->
+                        <!--</select>-->
+                    <!--</label>-->
+                    <!--<select-number></select-number>-->
+                    <div style="width: 100%;z-index: 1" select-number id="_generatorId_"   optiondata1="{{templates}}" class="select3-input example-input forSelect"></div>
+                </div>
+            </div>
+        </div>
+        <footer class="panel-footer text-right bg-light lter">
+            <input type="button" ng-click="delete()" ng-if="edit_mode" class="btn btn-danger pull-left" value="删除"/>
+            <input type="submit" class="btn btn-success" value="导入" ng-click="insertToFacility()"/>
+         </footer>
+     </form>
+  </div>
+</div>
+

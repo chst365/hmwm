@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.template.FacilityTemplateDao">
+  <resultMap id="BaseResultMap" type="FacilityTemplate">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_facilitytemplate t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getByCode" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_facilitytemplate t
+    where t.code = #{code,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_facilitytemplate t
+    order by t.code
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_facilitytemplate t
+    where 1=1
+    <if test="sortField != null and sortField == 'code'">
+      order by t.code ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="FacilityTemplate">
+    insert into
+    t_facilitytemplate (
+      uuid,
+      code,
+      name
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{code,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into
+    t_facilitytemplate (
+      uuid,
+      code,
+      name
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.code,jdbcType=VARCHAR},
+      #{item.name,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="FacilityTemplate">
+    update t_facilitytemplate
+    set
+      name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_facilitytemplate
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

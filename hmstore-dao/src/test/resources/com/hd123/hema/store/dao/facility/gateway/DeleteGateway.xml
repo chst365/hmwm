@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_GATEWAY UUID="3ea794de5fda4373ad34c57f230b2172" code="Code001" ip="137.27.15.1"
+               port="8080" templateUuid="null" orgUuid="3c3494bcab0b4b17aaf4a3798d23ac9c"/>
+    <T_GATEWAY UUID="587f0bc087cb4defa48ae7f5da0506ce" code="Code002" ip="192.168.23.15"
+               port="21" templateUuid="null" orgUuid="2a375856ba7d4493a0253221605abd0e"/>
+</dataset>

@@ -1,0 +1,216 @@
+{
+	"uuid": "1",
+	"code": "T001",
+	"name": "双线两组",
+	"gateways": [
+		{
+			"code": "1",
+			"ip": "30.86.28.135",
+			"port": 5003,
+			"labels": [
+				{
+					"code": "1001",
+					"address": "1001",
+					"type": "3-显示标签"
+				},
+				{
+					"code": "1002",
+					"address": "1002",
+					"type": "3-显示标签"
+				},
+				{
+					"code": "1111",
+					"address": "1111",
+					"type": "1-一对一拣货标签"
+				},
+				{
+					"code": "1112",
+					"address": "1112",
+					"type": "1-一对一拣货标签"
+				},
+				{
+					"code": "1113",
+					"address": "1113",
+					"type": "1-一对一拣货标签"
+				},
+				{
+					"code": "1115",
+					"address": "1115",
+					"type": "1-一对一拣货标签"
+				},
+				{
+					"code": "1116",
+					"address": "1116",
+					"type": "1-一对一拣货标签"
+				},
+				{
+					"code": "1117",
+					"address": "1117",
+					"type": "1-一对一拣货标签"
+				},
+				{
+					"code": "1118",
+					"address": "1118",
+					"type": "1-一对一拣货标签"
+				},
+				{
+					"code": "1119",
+					"address": "1119",
+					"type": "1-一对一拣货标签"
+				},
+				{
+					"code": "1120",
+					"address": "1120",
+					"type": "1-一对一拣货标签"
+				},
+				{
+					"code": "1121",
+					"address": "1122",
+					"type": "1-一对一拣货标签"
+				}
+			]
+		},
+		{
+			"code": "2",
+			"ip": "30.86.28.136",
+			"port": 5003,
+			"labels": [
+				{
+					"code": "2001",
+					"address": "2001",
+					"type": "3-显示标签"
+				},
+				{
+					"code": "2002",
+					"address": "2002",
+					"type": "3-显示标签"
+				},
+				{
+					"code": "2111",
+					"address": "2111",
+					"type": "1-一对一拣货标签"
+				}
+			]
+		},
+		{
+			"code": "3",
+			"ip": "30.86.28.137",
+			"port": 5003,
+			"labels": [
+				{
+					"code": "3001",
+					"address": "3001",
+					"type": "3-显示标签"
+				},
+				{
+					"code": "3002",
+					"address": "3002",
+					"type": "3-显示标签"
+				},
+				{
+					"code": "3111",
+					"address": "3111",
+					"type": "1-一对一拣货标签"
+				}
+			]
+		}
+	],
+	"jobpoints": [
+		{
+			"code": "1",
+			"name": "作业点-1",
+			"pickareas": [
+				{
+					"code": "1001",
+					"name": "一楼分区",
+					"sections": [
+						{
+							"code": "100101",
+							"name": "1001区段-1",
+							"labels": [
+								{
+									"code": "1001",
+									"address": "1001",
+									"type": "3-显示标签",
+									"usage": "10-区段标签"
+								},
+								{
+									"code": "1002",
+									"address": "1002",
+									"type": "3-显示标签",
+									"usage": "6-完成指示"
+								}
+							],
+							"rplLables": [
+								{
+									"labelACode": "1910",
+									"labelAType": "3-显示标签",
+									"labelAUsage": "3-补货请求",
+									"labelBCode": "1911",
+									"labelBType": "3-显示标签",
+									"labelBUsage": "4-补货应答"
+								},
+								{
+									"labelACode": "1920",
+									"labelAType": "3-显示标签",
+									"labelAUsage": "3-补货请求",
+									"labelBCode": "1921",
+									"labelBType": "3-显示标签",
+									"labelBUsage": "4-补货应答"
+								},
+								{
+									"labelACode": "1930",
+									"labelAType": "3-显示标签",
+									"labelAUsage": "3-补货请求",
+									"labelBCode": "1931",
+									"labelBType": "3-显示标签",
+									"labelBUsage": "4-补货应答"
+								},
+								{
+									"labelACode": "1940",
+									"labelAType": "3-显示标签",
+									"labelAUsage": "3-补货请求",
+									"labelBCode": "1941",
+									"labelBType": "3-显示标签",
+									"labelBUsage": "4-补货应答"
+								}
+							],
+							"bins": [
+								{
+									"bin": "AA1",
+									"label": "1111",
+									"type": "1-一对一拣货标签",
+									"usage": "2-拣货显示数量"
+								},
+								{
+									"bin": "AA2",
+									"label": "1112",
+									"type": "1-一对一拣货标签",
+									"usage": "2-拣货显示数量"
+								},
+								{
+									"bin": "AA3",
+									"label": "1113",
+									"type": "1-一对一拣货标签",
+									"usage": "2-拣货显示数量"
+								},
+								{
+									"bin": "AA4",
+									"label": "1114",
+									"type": "1-一对一拣货标签",
+									"usage": "2-拣货显示数量"
+								},
+								{
+									"bin": "AA5",
+									"label": "1115",
+									"type": "1-一对一拣货标签",
+									"usage": "2-拣货显示数量"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

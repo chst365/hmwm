@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+  <title xml:id="wms-mdata-container">门店</title>
+  <section>
+    <title>简介</title>
+    <para>定义与维护门店。
+    </para>
+  </section>
+  <section>
+    <title>领域模型</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata
+          fileref="images/material/store/com.hd123.hema.store.bean.material.store.jpg" />
+      </imageobject>
+    </mediaobject>
+
+    <section>
+      <title>属性含义</title>
+      <section>
+        <title>门店</title>
+        <para>记录门店信息。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>code</td>
+              <td>代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>名称</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>address</td>
+              <td>地址</td>
+              <td>varchar2(255)</td>
+              <td>null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>remark</td>
+              <td>备注</td>
+              <td>varchar2(255)</td>
+              <td>null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  </section>
+</chapter>

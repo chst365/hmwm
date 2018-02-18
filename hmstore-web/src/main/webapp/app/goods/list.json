@@ -1,0 +1,43 @@
+﻿{
+	"previous": false,
+	"next": true,
+	"total_count": 6,
+	"page_count": 2,
+	"results": [
+		{
+			"uuid": "1",
+			"goodsCode": "0102020008",
+			"goodsName": "罗宋汤（加量装）",
+			"categoryCode": "0500300003",
+			"categoryName": "淮扬/本帮汤羹"		},
+			"categoryName": "淮扬/本帮汤羹"		},
+		{
+			"uuid": "2",
+			"goodsCode": "0102050003",
+			"goodsName": "腊味原盅蒸饭·粤式例汤套餐",
+			"categoryCode": "1100200001",
+			"categoryName": "发的撒3"
+		},
+		{
+			"uuid": "3",
+			"goodsCode": "0102010012",
+			"goodsName": "黄椒蒸卡巴沙鱼套餐",
+			"categoryCode": "1100100004",
+			"categoryName": "我个人"
+		},
+		{
+			"uuid": "4",
+			"goodsCode": "800400500001",
+			"goodsName": "新奥尔良烤翅（1对装）",
+			"categoryCode": "0500300003",
+			"categoryName": "防盗网说"
+		},
+		{
+			"uuid": "5",
+			"goodsCode": "0102010001",
+			"goodsName": "炸猪排·罗宋汤套餐",
+			"categoryCode": "1100300010",
+			"categoryName": "淮扬/本帮汤羹"
+		}
+	] 
+}

@@ -1,0 +1,96 @@
+{
+	"previous": false,
+	"next": true,
+	"total_count": 4,
+	"page_count": 1,
+	"results": [
+		{
+			"storeUuid": "1",
+			"storeName": "新大陆广场店",
+			"batchId": "11099282111624",
+			"batchName": "16510-中一区-11:30-11:35-40分钟-92",
+			"batchArriveTime": "11:30-11:35",
+			"batchOrderCount": 1,
+			"bizOrderId": "1099282111624",
+			"status": "1",
+			"orderArriveTime": "2016-05-10 11:35:25"
+		},
+		{
+			"storeUuid": "1",
+			"storeName": "新大陆广场店",
+			"batchId": "31097295911634",
+			"batchName": "16510-东一区-12:41-12:51-41分钟-2",
+			"batchArriveTime": "12:41-12:51",
+			"batchOrderCount": 1,
+			"bizOrderId": "1097295911634",
+			"status": "0",
+			"orderArriveTime": "2016-05-10 12:45:00~2016-05-10 12:45:00"
+		},
+		{
+			"storeUuid": "1",
+			"storeName": "新大陆广场店",
+			"batchId": "31097666611634",
+			"batchName": "16510-东南二区-10:35-10:50-44分钟-10",
+			"batchArriveTime": "10:35-10:50",
+			"batchOrderCount": 2,
+			"bizOrderId": "1100005211634",
+			"status": "1",
+			"orderArriveTime": "2016-05-10 10:37:02"
+		},
+		{
+			"storeUuid": "1",
+			"storeName": "新大陆广场店",
+			"batchId": "31097666611634",
+			"batchName": "16510-东南二区-10:35-10:50-44分钟-10",
+			"batchArriveTime": "10:35-10:50",
+			"batchOrderCount": 2,
+			"bizOrderId": "1097666611634",
+			"status": "0",
+			"orderArriveTime": "2016-05-10 10:45:00~2016-05-10 10:45:00"
+		},
+		{
+			"storeUuid": "1",
+			"storeName": "新大陆广场店",
+			"batchId": "31097682711634",
+			"batchName": "16510-中一区-11:40-11:45-40分钟-12",
+			"batchArriveTime": "11:40-11:45",
+			"batchOrderCount": 4,
+			"bizOrderId": "1099695311634",
+			"status": "0",
+			"orderArriveTime": "2016-05-10 10:45:00~2016-05-10 10:45:00"
+		},
+		{
+			"storeUuid": "1",
+			"storeName": "新大陆广场店",
+			"batchId": "31097682711634",
+			"batchName": "16510-中一区-11:40-11:45-40分钟-12",
+			"batchArriveTime": "11:40-11:45",
+			"batchOrderCount": 4,
+			"bizOrderId": "1100055011634",
+			"status": "0",
+			"orderArriveTime": "2016-05-10 10:45:00~2016-05-10 10:45:00"
+		},
+		{
+			"storeUuid": "1",
+			"storeName": "新大陆广场店",
+			"batchId": "31097682711634",
+			"batchName": "16510-中一区-11:40-11:45-40分钟-12",
+			"batchArriveTime": "11:40-11:45",
+			"batchOrderCount": 4,
+			"bizOrderId": "1099618911634",
+			"status": "0",
+			"orderArriveTime": "2016-05-10 10:45:00~2016-05-10 10:45:00"
+		},
+		{
+			"storeUuid": "1",
+			"storeName": "新大陆广场店",
+			"batchId": "31097682711634",
+			"batchName": "16510-中一区-11:40-11:45-40分钟-12",
+			"batchArriveTime": "11:40-11:45",
+			"batchOrderCount": 4,
+			"bizOrderId": "1097682711634",
+			"status": "0",
+			"orderArriveTime": "2016-05-10 10:45:00~2016-05-10 10:45:00"
+		}
+	]
+}

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+  <title xml:id="wms-mdata-container">权限</title>
+  <section>
+    <title>简介</title>
+    <para>通过权限控制可使用的功能，权限采用预设置，不提供界面维护。
+    </para>
+  </section>
+  <section>
+    <title>领域模型</title>
+    <mediaobject>
+      <imageobject>
+        <imagedata
+          fileref="images/system/permission/com.hd123.hema.store.bean.system.permission.jpg" />
+      </imageobject>
+    </mediaobject>
+
+    <section>
+      <title>属性含义</title>
+      <section>
+        <title>权限</title>
+        <para>记录权限信息。</para>
+        <table>
+          <thead>
+            <tr>
+              <td>属性</td>
+              <td>中文名</td>
+              <td>类型</td>
+              <td>可为空</td>
+              <td>说明</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>唯一标示</td>
+              <td>varchar2(32)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>code</td>
+              <td>代码</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>name</td>
+              <td>名称</td>
+              <td>varchar2(30)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>enable</td>
+              <td>是否启用</td>
+              <td>varchar2(5)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>url</td>
+              <td>对应菜单的URL</td>
+              <td>varchar2(100)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>icon</td>
+              <td>对应菜单的图标</td>
+              <td>varchar2(100)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>orderNo</td>
+              <td>展示顺序</td>
+              <td>int(2)</td>
+              <td>not null</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>parent</td>
+              <td>上级权限，为空表示该权限是根节点</td>
+              <td>varchar2(32)</td>
+              <td>null</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+  </section>
+
+</chapter>

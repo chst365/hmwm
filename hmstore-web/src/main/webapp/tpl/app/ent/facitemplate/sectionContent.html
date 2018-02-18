@@ -1,0 +1,434 @@
+<div class="padder" style="margin-right: -15px;">
+	<form  class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" ng-submit="saveSectionFc()">
+  <tabset class="tab-container">
+		<tab heading="区段详情">
+			<div>
+		        <div class="form-group">
+	              <label class="col-sm-2 control-label">代码</label>
+	              <div class="col-sm-10">
+	                <input maxlength="10" type="text" class="form-control" ng-model="currentSection.code" pattern="^[a-zA-Z0-9]+[\s]*$" title="请输入英文或者数字" required>
+	              </div>
+	            </div>
+	            <div class="line line-dashed b-b line-lg pull-in"></div>
+	            <div class="form-group">
+	              <label class="col-sm-2 control-label">名称</label>
+	              <div class="col-sm-10">
+	                <input maxlength="20" type="text" class="form-control" ng-model="currentSection.name" required>
+	              </div>
+	            </div>
+	            <div class="line line-dashed b-b line-lg pull-in"></div>
+	        </div>
+		</tab>
+		<tab heading="货位" ng-click="changeTab()">
+			<div>
+				<table class="table table-striped b-t b-light">
+			        <thead>
+			          <tr>
+			            <th style="width:30px;">行</th>
+			            <th>货位</th>
+			            <th>结点编号</th>
+			            <th>结点类型</th>
+			            <th>结点用途</th>
+			            <th style="width:100px;"></th>
+			          </tr>
+			        </thead>
+			        <tbody data-ng-repeat="bin in currentSection.binEleTags" data-ng-switch on="currentSection.binEleTags[$index].collapse">
+			          <tr>
+			            <td>{{ $index + 1 }}</td>
+			            <td>{{bin.binCode}}</td>
+			            <td>{{bin.nodeCode}}</td>
+			            <td>{{bin.nodeType | typeFilter}}</td>
+			            <td>{{bin.nodeUsage | typeFilter}}</td>
+			            <td>
+			              <button type="button" class="btn btn-sm btn-icon btn-default" data-ng-click="selectTableToEditGoodsPosition($index)"><i class="fa fa-edit"></i></button>
+			              <button type="button" class="btn btn-sm btn-icon btn-danger" ng-click="deleteBin($index)"><i class="fa fa-remove"></i></button>
+			            </td>
+			          </tr>
+					  <tr data-ng-switch-when="true">
+						  <td colspan="6">
+							  <div class="span6">
+								  <div class="row">
+									  <div class="panel panel-default">
+										  <div class="panel-heading" style="height: 38px;">
+										  <span ng-switch on="edit_mode">
+											<span>修改货位</span>
+										  </span>
+										  </div>
+										  <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled"  novalidate>
+											  <div class="panel-body">
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">货位</label>
+													  <div class="col-sm-10">
+														  <input maxlength="10" type="text" class="form-control" pattern="^[a-zA-Z0-9]+[\s]*$" title="请输入英文或者数字" ng-model="currentSection.binEleTags[$index].binCode" >
+													  </div>
+												  </div>
+												  <div class="line line-dashed b-b line-lg pull-in"></div>
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">结点编号</label>
+													  <div class="col-sm-10">
+														  <select class="col-sm-10 form-control" ng-model="bin.nodeCode" > <!--ng-disabled="disabledClickSelectBin"-->
+															  <option ng-repeat="tag in availableChangebinEleTags" value="{{tag}}">{{tag}}</option>
+														  </select>
+													  </div>
+												  </div>
+												  <div class="line line-dashed b-b line-lg pull-in"></div>
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">结点类型</label>
+													  <div class="col-sm-10">
+														  <input type="text" class="form-control" placeholder="{{currentSection.binEleTags[$index].nodeType | typeFilter}}" required disabled>
+													  </div>
+												  </div>
+												  <div class="line line-dashed b-b line-lg pull-in"></div>
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">结点用途</label>
+													  <div class="col-sm-10">
+														  <input type="text" class="form-control"  placeholder="{{currentSection.binEleTags[$index].nodeUsage | typeFilter}}" required disabled>
+													  </div>
+												  </div>
+											  </div>
+										  </form>
+									  </div>
+								  </div>
+							  </div>
+						  </td>
+					  </tr>
+			        </tbody>
+		      	</table>
+				<div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="m-t m-b">
+					<button type="button" class="btn btn-success btn-rounded"  ng-click="createBin()">新增货位</button>
+				</div>
+				<div ng-show="isNewBinFlag">
+					<div class="row">
+						<div class="panel panel-default">
+							<div class="panel-heading" style="height: 38px;">
+                                  <span ng-switch on="edit_mode">
+                                    <span>新增货位</span>
+                                  </span>
+							</div>
+							<form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" ng-submit="addCurrentGoodspositionFc()">
+								<div class="panel-body">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">货位</label>
+										<div class="col-sm-10">
+											<input maxlength="10" type="text" class="form-control" pattern="^[a-zA-Z0-9]+[\s]*$" title="请输入英文或者数字" ng-model="addCurrentGoodspositionObjFc.binCode" required>
+										</div>
+									</div>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">结点编号</label>
+										<div class="col-sm-10">
+										    <select class="form-control" ng-model="addCurrentGoodspositionObjFc.nodeCode" ng-disabled="disabledClickSelectBin">
+										        <option ng-repeat="tag in availablebinEleTags" value="{{tag}}">{{tag}}</option>
+										    </select>
+										</div>
+									</div>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">结点类型</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" placeholder="{{addCurrentGoodspositionObjFc.nodeType | typeFilter}}" required disabled>
+										</div>
+									</div>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">结点用途</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" placeholder="{{addCurrentGoodspositionObjFc.nodeUsage | typeFilter}}" required disabled>
+										</div>
+									</div>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<div>
+										<button type="submit" class="btn btn-primary pull-right"  >提交</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</tab>
+		<tab heading="区段结点" ng-click="changeTab()">
+			<div>
+				<table class="table table-striped b-t b-light">
+			        <thead>
+			          <tr>
+			            <th style="width:30px;">行</th>
+			            <th>结点编号</th>
+			            <th>结点类型</th>
+			            <th>结点用途</th>
+			            <th style="width:100px;"></th>
+			          </tr>
+			        </thead>
+			        <tbody data-ng-repeat="label in currentSection.sectionEleTags" data-ng-switch on="currentSection.sectionEleTags[$index].collapse">
+			          <tr>
+			            <td>{{ $index + 1 }}</td>
+			            <td>{{label.nodeCode}}</td>
+			            <td>{{label.nodeType | typeFilter}}</td>
+			            <td>{{label.nodeUsage | typeFilter}}</td>
+			            <td>
+			              <button type="button" class="btn btn-sm btn-icon btn-default" data-ng-click="selectTableToEditPickArea($index)"><i class="fa fa-edit"></i></button>
+			              <button type="button" class="btn btn-sm btn-icon btn-danger" ng-click="deleteSection($index)"><i class="fa fa-remove"></i></button>
+			            </td>
+			          </tr>
+					  <tr data-ng-switch-when="true">
+						  <td colspan="5">
+							  <div class="span5">
+								  <div class="row">
+									  <div class="panel panel-default">
+										  <div class="panel-heading" style="height: 38px;">
+										  <span ng-switch on="edit_mode">
+											<span>修改区段结点</span>
+										  </span>
+										  </div>
+										  <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" novalidate>
+											  <div class="panel-body">
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">结点编号</label>
+													  <div class="col-sm-10">
+														  <select class="form-control" ng-model="label.nodeCode" ng-disabled="disabledClickSelectBin">
+															  <option ng-repeat="tag in availableSectionAndRplEleTags" value="{{tag}}">{{tag}}</option>
+														  </select>
+													  </div>
+												  </div>
+												  <div class="line line-dashed b-b line-lg pull-in"></div>
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">结点类型</label>
+													  <div class="col-sm-10">
+														  <input type="text" class="form-control" ng-model="DisplayTag" placeholder="显示标签" required disabled>
+													  </div>
+												  </div>
+												  <div class="line line-dashed b-b line-lg pull-in"></div>
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">结点用途</label>
+													  <div class="col-sm-10">
+														  <input type="text" class="form-control" ng-model="Section"  placeholder="区段" required disabled>
+													  </div>
+												  </div>
+											  </div>
+										  </form>
+									  </div>
+								  </div>
+							  </div>
+						  </td>
+					  </tr>
+			        </tbody>
+		      	</table>
+				<div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="m-t m-b">
+					<button type="button" class="btn btn-success btn-rounded" ng-click="createSectionTag()">新增区段结点</button>
+				</div>
+				<div ng-show="isNewSectionTagFlag">
+					<div class="row">
+						<div class="panel panel-default">
+							<div class="panel-heading" style="height: 38px;">
+                            <span ng-switch on="edit_mode">
+                                <span>新增区段结点</span>
+                            </span>
+							</div>
+							<form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" ng-submit="addCurrentAreapoint()">
+								<div class="panel-body">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">结点编号</label>
+										<div class="col-sm-10">
+											<select class="form-control" ng-model="addCurrentPickAreaObjFc.nodeCode" ng-disabled="disabledClickSelectBin">
+												<option ng-repeat="tag in newAvailableSectionAndRplEleTagsPA" value="{{tag}}">{{tag}}</option>
+											</select>
+										</div>
+									</div>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">结点类型</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" ng-model="DisplayTag" placeholder="显示标签" required disabled>
+										</div>
+									</div>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">结点用途</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" ng-model="Section"  placeholder="区段" required disabled>
+										</div>
+									</div>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<div>
+										<button type="submit" class="btn btn-primary pull-right" >提交</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</tab>
+		<tab heading="补货结点" ng-click="changeTab()">
+			<div>
+				<table class="table table-striped b-t b-light">
+			        <thead>
+			          <tr>
+			            <th style="width:30px;">行</th>
+			            <th>请求结点编号</th>
+			            <th>请求结点类型</th>
+			            <th>请求结点用途</th>
+			            <th>答应结点编号</th>
+			            <th>答应结点类型</th>
+			            <th>答应结点用途</th>
+			            <th style="width:100px;"></th>
+			          </tr>
+			        </thead>
+			        <tbody data-ng-repeat="label in currentSection.rplEleTags" data-ng-switch on="currentSection.rplEleTags[$index].collapse">
+			          <tr>
+			            <td>{{ $index + 1 }}</td>
+			            <td>{{label.requestNodeCode}}</td>
+			            <td>{{label.requestNodeType | typeFilter}}</td>
+			            <td>{{label.requestNodeUsage | typeFilter}}</td>
+			            <td>{{label.responseNodeCode}}</td>
+			            <td>{{label.responseNodeType | typeFilter}}</td>
+			            <td>{{label.responseNodeUsage | typeFilter}}</td>
+			            <td>
+			              <button  type="button" class="btn btn-sm btn-icon btn-default" data-ng-click="selectTableToEditAddGoods($index)"><i class="fa fa-edit"></i></button>
+			              <button type="button" class="btn btn-sm btn-icon btn-danger" ng-click="deleteRpl($index)"><i class="fa fa-remove"></i></button>
+			            </td>
+			          </tr>
+					  <tr data-ng-switch-when="true">
+						  <td colspan="8">
+							  <div class="span8">
+								  <div class="row">
+									  <div class="panel panel-default">
+										  <div class="panel-heading" style="height: 38px;">
+										  <span ng-switch on="edit_mode">
+											<span>修改补货结点</span>
+										  </span>
+										  </div>
+										  <form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" ng-submit="submit()" novalidate>
+											  <div class="panel-body">
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">请求结点编号</label>
+													  <div class="col-sm-10">
+														  <select class="form-control" ng-model="label.requestNodeCode" ng-disabled="disabledClickSelectBin">
+															  <option ng-repeat="tag in availableSectionAndRplEleTagsRq" value="{{tag}}">{{tag}}</option>
+														  </select>
+													  </div>
+												  </div>
+												  <div class="line line-dashed b-b line-lg pull-in"></div>
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">请求结点类型</label>
+													  <div class="col-sm-10">
+														  <input type="text" class="form-control" ng-model="DisplayTag" placeholder="显示标签" required disabled>
+													  </div>
+												  </div>
+												  <div class="line line-dashed b-b line-lg pull-in"></div>
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">请求结点用途</label>
+													  <div class="col-sm-10">
+														  <input type="text" class="form-control" ng-model="RplRequest"  placeholder="补货请求" required disabled>
+													  </div>
+												  </div>
+												  <div class="line line-dashed b-b line-lg pull-in"></div>
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">答应结点编号</label>
+													  <div class="col-sm-10">
+														  <select class="form-control" ng-model="label.responseNodeCode" ng-disabled="disabledClickSelectBin">
+															  <option ng-repeat="tag in availableSectionAndRplEleTagsRp" value="{{tag}}">{{tag}}</option>
+														  </select>
+													  </div>
+												  </div>
+												  <div class="line line-dashed b-b line-lg pull-in"></div>
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">答应结点类型</label>
+													  <div class="col-sm-10">
+														  <input type="text" class="form-control" ng-model="DisplayTag" placeholder="显示标签" required disabled>
+													  </div>
+												  </div>
+												  <div class="line line-dashed b-b line-lg pull-in"></div>
+												  <div class="form-group">
+													  <label class="col-sm-2 control-label">答应结点用途</label>
+													  <div class="col-sm-10">
+														  <input type="text" class="form-control" ng-model="RplResponse"  placeholder="补货应答" required disabled>
+													  </div>
+												  </div>
+
+											  </div>
+										  </form>
+									  </div>
+								  </div>
+							  </div>
+						  </td>
+					  </tr>
+			        </tbody>
+		      	</table>
+				<div class="line line-dashed b-b line-lg pull-in"></div>
+		        <div class="m-t m-b">
+					<button type="button" class="btn btn-success btn-rounded" ng-click="createRplTag()">新增补货结点</button>
+				</div>
+				<div ng-show="isNewRplTagFlag">
+					<div class="panel panel-default">
+						<div class="panel-heading" style="height: 38px;">
+                                      <span ng-switch on="edit_mode">
+                                        <span>新增补货结点</span>
+                                      </span>
+						</div>
+						<form class="form-horizontal ng-pristine ng-valid ng-valid-date ng-valid-required ng-valid-parse ng-valid-date-disabled" ng-submit="addGoodsPoint()" >
+							<div class="panel-body">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">请求结点编号</label>
+									<div class="col-sm-10">
+										<select class="form-control" ng-model="addCurrentAddGoodsPointObjFc.requestNodeCode" ng-disabled="disabledClickSelectBin">
+											<option ng-repeat="tag in newAvailableSectionAndRplEleTagsAG" value="{{tag}}">{{tag}}</option>
+										</select>
+									</div>
+								</div>
+								<div class="line line-dashed b-b line-lg pull-in"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">请求结点类型</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" ng-model="DisplayTag" placeholder="显示标签" required disabled>
+									</div>
+								</div>
+								<div class="line line-dashed b-b line-lg pull-in"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">请求结点用途</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" ng-model="RplRequest"  placeholder="补货请求" required disabled>
+									</div>
+								</div>
+								<div class="line line-dashed b-b line-lg pull-in"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">答应结点编号</label>
+									<div class="col-sm-10">
+										<select class="form-control" ng-model="addCurrentAddGoodsPointObjFc.responseNodeCode" ng-disabled="disabledClickSelectBin">
+											<option ng-repeat="tag in newAvailableSectionAndRplEleTagsAG" value="{{tag}}">{{tag}}</option>
+										</select>
+									</div>
+								</div>
+								<div class="line line-dashed b-b line-lg pull-in"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">答应结点类型</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" ng-model="DisplayTag" placeholder="显示标签" required disabled>
+									</div>
+								</div>
+								<div class="line line-dashed b-b line-lg pull-in"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">答应结点用途</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" ng-model="RplResponse"  placeholder="补货应答" required disabled>
+									</div>
+								</div>
+								<div class="line line-dashed b-b line-lg pull-in"></div>
+								<div>
+									<button type="submit" class="btn btn-primary pull-right" >提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</tab>
+	</tabset>
+	<div class="m-t m-b">
+      <button type="button" class="btn btn-danger btn-rounded" ng-click="deleteCurrentSectionFc()">删除区段</button>
+      <button type="submit" class="btn btn-success pull-right" style="margin-right: 20px;" >保存区段</button>
+    </div>
+  </form>
+</div>

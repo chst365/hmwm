@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_BINELETAG UUID="002ac15631874ac8894f7061a70fd6cb" binCode="ckjAA1" nodeCode="zbdzbq" nodeAddress="zbdzbq"
+                 nodeType="PickTag" nodeUsage="PickDisplayQty" sectionUuid="c4cf12ecbc3d4e189f64d5c91314ca6a"/>
+    <T_BINELETAG UUID="5663c3182c524b02b84216e592cd86fe" binCode="总部002" nodeCode="总部电子标?" nodeAddress="总部电子标?"
+                 nodeType="PickTag" nodeUsage="PickDisplayQty" sectionUuid="d01556c6b45944d0bd2b542e7d6d6400"/>
+</dataset>

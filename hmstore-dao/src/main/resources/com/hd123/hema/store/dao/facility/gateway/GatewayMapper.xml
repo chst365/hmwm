@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.gateway.GatewayDao">
+  <resultMap id="BaseResultMap" type="Gateway">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="port" property="port" jdbcType="VARCHAR" />
+    <result column="templateUuid" property="templateUuid" jdbcType="VARCHAR" />
+    <result column="orgUuid" property="orgUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_gateway t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getGatewayByCode" resultMap="BaseResultMap" parameterType="map">
+    select t.*
+    from t_gateway t
+    where t.code = #{code,jdbcType=VARCHAR}
+      <if test="templateUuid != null and templateUuid != ''">
+        and t.templateUuid = #{templateUuid,jdbcType=VARCHAR}
+      </if>
+        and t.orgUuid = #{orgUuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_gateway t
+    where 1=1
+    <if test="templateUuid != null and templateUuid != ''">
+      and t.templateUuid = #{templateUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="orgUuid != null and orgUuid != ''">
+      and t.orgUuid = #{orgUuid,jdbcType=VARCHAR}
+    </if>
+    order by t.code
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_gateway t
+    where 1=1
+    <if test="orgEquals != null and orgEquals != ''">
+      and t.orgUuid = #{orgEquals,jdbcType=VARCHAR}
+    </if>
+    <if test="sortField != null and sortField == 'nodeCode'">
+      order by t.nodeCode ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="Gateway">
+    insert into
+    t_gateway (
+      uuid,
+      code,
+      ip,
+      port,
+      templateUuid,
+      orgUuid
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{code,jdbcType=VARCHAR},
+      #{ip,jdbcType=VARCHAR},
+      #{port,jdbcType=VARCHAR},
+      #{templateUuid,jdbcType=VARCHAR},
+      #{orgUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="Gateway">
+    insert into
+    t_gateway (
+      uuid,
+      code,
+      ip,
+      port,
+      templateUuid,
+      orgUuid
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.code,jdbcType=VARCHAR},
+      #{item.ip,jdbcType=VARCHAR},
+      #{item.port,jdbcType=VARCHAR},
+      #{item.templateUuid,jdbcType=VARCHAR},
+      #{item.orgUuid,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="Gateway">
+    update t_gateway
+    set
+      code = #{code,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      port = #{port,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_gateway
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteByOrg" parameterType="String">
+    delete from t_gateway
+    where orgUuid = #{orgUuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

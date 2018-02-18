@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_SECTION UUID="03701d0936ab4188a81f97cf1755c497" code="区段02" name="区段02"
+               pickAreaUuid="946eee8d69bb40a98a59ab9d991d7430" />
+    <T_SECTION UUID="04d5e135f10d4512aee046c2136bbd65" code="区段03" name="区段03"
+               pickAreaUuid="3578f73487ae49308e5e74a30f0c1113" />
+</dataset>

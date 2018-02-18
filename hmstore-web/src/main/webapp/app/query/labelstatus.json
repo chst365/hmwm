@@ -1,0 +1,42 @@
+{
+	"success": true,
+	"msg": "操作成功",
+	"obj": [
+		{
+			"storeName": "不要删永杰test01",
+			"infos": [
+				{
+					"nodeAddress": "0001A",
+					"nodeState": "Normal",
+					"checkTime": 1467907200000,
+					"remark": "w"
+				},
+				{
+					"nodeAddress": "0001B",
+					"nodeState": "Normal",
+					"checkTime": 1467907200000,
+					"remark": "wb"
+				}
+			]
+		},
+		{
+			"storeName": "不要删永杰test02",
+			"infos": [
+				{
+					"nodeAddress": "0002A",
+					"nodeState": "Warning",
+					"checkTime": 1467907200000,
+					"remark": "w"
+				},
+				{
+					"nodeAddress": "0001B",
+					"nodeState": "Normal",
+					"checkTime": 1467907200000,
+					"remark": "wb"
+				}
+			]
+		}
+	],
+	"attributes": null
+}
+

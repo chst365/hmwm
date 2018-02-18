@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.pickscheme.PickSchemeTemplateDao">
+  <resultMap id="BaseResultMap" type="PickSchemeTemplate">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="facilityTemplateUuid" property="facilityTemplate.uuid" jdbcType="VARCHAR" />
+    <result column="facilityTemplateCode" property="facilityTemplate.code" jdbcType="VARCHAR" />
+    <result column="facilityTemplateName" property="facilityTemplate.name" jdbcType="VARCHAR" />
+    <result column="orgUuid" property="orgUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_pickscheme t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getPickSchemeTemplateByCode" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_pickscheme t
+    where t.code = #{code,jdbcType=VARCHAR}
+        and t.orgUuid = #{orgUuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_pickscheme t
+    where 1=1
+   <if test="orgUuid != null and orgUuid != ''">
+      and t.orgUuid = #{orgUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="state != null and state != ''">
+      and t.state = #{state,jdbcType=VARCHAR}
+    </if>
+    order by t.code
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_pickscheme t
+    where 1=1
+    <if test="orgEquals != null and orgEquals != ''">
+      and t.orgUuid = #{orgEquals,jdbcType=VARCHAR}
+    </if>
+    <if test="sortField != null and sortField == 'code'">
+      order by t.code ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="PickSchemeTemplate">
+    insert into
+    t_pickscheme (
+      uuid,
+      code,
+      name,
+      state,
+      version,
+      versionTime,
+      facilityTemplateUuid,
+      facilityTemplateCode,
+      facilityTemplateName,
+      orgUuid
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{code,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{state,jdbcType=VARCHAR},
+      #{version,jdbcType=INTEGER},
+      #{versionTime,jdbcType=TIMESTAMP},
+      #{facilityTemplate.uuid,jdbcType=VARCHAR},
+      #{facilityTemplate.code,jdbcType=VARCHAR},
+      #{facilityTemplate.name,jdbcType=VARCHAR},
+      #{orgUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into
+    t_pickscheme (
+      uuid,
+      code,
+      name,
+      state,
+      version,
+      versionTime,
+      facilityTemplateUuid,
+      facilityTemplateCode,
+      facilityTemplateName,
+      orgUuid
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.code,jdbcType=VARCHAR},
+      #{item.name,jdbcType=VARCHAR},
+      #{item.state,jdbcType=VARCHAR},
+      #{item.version,jdbcType=INTEGER},
+      #{item.versionTime,jdbcType=TIMESTAMP},
+      #{item.facilityTemplate.uuid,jdbcType=VARCHAR},
+      #{item.facilityTemplate.code,jdbcType=VARCHAR},
+      #{item.facilityTemplate.name,jdbcType=VARCHAR},
+      #{item.orgUuid,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="PickSchemeTemplate">
+    update t_pickscheme
+    set
+      code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER} + 1,
+      versionTime = #{versionTime,jdbcType=TIMESTAMP},
+      facilityTemplateUuid = #{facilityTemplate.uuid,jdbcType=VARCHAR},
+      facilityTemplateCode = #{facilityTemplate.code,jdbcType=VARCHAR},
+      facilityTemplateName = #{facilityTemplate.name,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_pickscheme
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

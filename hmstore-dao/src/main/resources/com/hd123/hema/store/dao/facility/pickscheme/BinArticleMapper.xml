@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.pickscheme.BinArticleDao">
+  <resultMap id="BaseResultMap" type="BinArticle">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="binCode" property="binCode" jdbcType="VARCHAR" />
+    <result column="articleUuid" property="article.uuid" jdbcType="VARCHAR" />
+    <result column="articleCode" property="article.code" jdbcType="VARCHAR" />
+    <result column="articleName" property="article.name" jdbcType="VARCHAR" />
+    <result column="pickSchemeUuid" property="pickSchemeUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_pickschemebinarticle t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getByArticleUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_pickschemebinarticle t
+    where t.articleUuid = #{articleUuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_pickschemebinarticle t
+    where 1=1
+    <if test="pickSchemeUuid != null and pickSchemeUuid != ''">
+      and t.pickSchemeUuid = #{pickSchemeUuid,jdbcType=VARCHAR}
+    </if>
+    order by t.binCode
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_pickschemebinarticle t
+    where 1=1
+    <if test="templateUuid != null and templateUuid != ''">
+      and t.pickSchemeUuid = #{templateUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="pickSchemeUuid != null and pickSchemeUuid != ''">
+      and t.pickSchemeUuid = #{pickSchemeUuid,jdbcType=VARCHAR}
+    </if>
+    <if test="sortField != null and sortField == 'binCode'">
+      order by t.binCode ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="BinArticle">
+    insert into
+    t_pickschemebinarticle (
+      uuid,
+      binCode,
+      articleUuid,
+      articleCode,
+      articleName,
+      pickSchemeUuid
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{binCode,jdbcType=VARCHAR},
+      #{article.uuid,jdbcType=VARCHAR},
+      #{article.code,jdbcType=VARCHAR},
+      #{article.name,jdbcType=VARCHAR},
+      #{pickSchemeUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into
+    t_pickschemebinarticle (
+      uuid,
+      binCode,
+      articleUuid,
+      articleCode,
+      articleName,
+      pickSchemeUuid
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.binCode,jdbcType=VARCHAR},
+      #{item.article.uuid,jdbcType=VARCHAR},
+      #{item.article.code,jdbcType=VARCHAR},
+      #{item.article.name,jdbcType=VARCHAR},
+      #{item.pickSchemeUuid,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="BinArticle">
+    update t_pickschemebinarticle
+    set
+      binCode = #{binCode,jdbcType=VARCHAR},
+      articleUuid = #{article.uuid,jdbcType=VARCHAR},
+      articleCode = #{article.code,jdbcType=VARCHAR},
+      articleName = #{article.name,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_pickschemebinarticle
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteByPickScheme" parameterType="String">
+    delete from t_pickschemebinarticle
+    where pickSchemeUuid = #{pickSchemeUuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

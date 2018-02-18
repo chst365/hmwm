@@ -1,0 +1,29 @@
+<div class="wrapper-md" ng-controller="LabelController">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span>标签</span>
+        </div>
+            <div class="panel-body">
+                <div class="hbox hbox-auto-xs hbox-auto-sm">
+                    <div class="col w-lg bg-light dk b-r">
+                        <div class="wrapper bg b-b">
+                            <button type="button" class="btn btn-sm btn-success pull-right" ui-sref="app.store.newgateway()">新增网关</button>  <!--ui-sref="app.store.newgateway()"-->
+                            <h4 class="m-n font-thin">网关</h4>
+                        </div>
+                        <div class="list-group">
+                            <a class="list-group-item" ng-repeat="gateway in gatewayInfoLists" ng-click="onGatewaySelect(gateway)">
+                                <i class="fa fa-chevron-right text-muted"></i>
+                                <i class="fa fa-plug fa-fw m-r-xs"></i>
+                                <span class="font-bold">{{gateway.code}}</span> &lt;{{gateway.ip}}:{{gateway.port}}&gt;
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- <div class="wrapper"> -->
+                        <div ui-view="gatewayView"></div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

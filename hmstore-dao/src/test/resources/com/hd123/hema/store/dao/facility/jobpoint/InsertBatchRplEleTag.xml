@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_RPLELETAG UUID="0b7a702816334f44b6136fb0d2eacfed" requestNodeCode="xs006" requestNodeAddress="xs006"
+                 requestNodeType="DisplayTag" requestNodeUsage="RplRequest" responseNodeCode="xs007"
+                 responseNodeAddress="xs007" responseNodeType="DisplayTag" responseNodeUsage="RplResponse"
+                 sectionUuid="49c3f90163ca47d6824cfd432d196d20" />
+    <T_RPLELETAG UUID="536977f724384267bb69b36acceda7c2" requestNodeCode="string" requestNodeAddress="string"
+                 requestNodeType="PickTag" requestNodeUsage="PickDisplayQty" responseNodeCode="string"
+                 responseNodeAddress="string" responseNodeType="PickTag" responseNodeUsage="PickDisplayQty"
+                 sectionUuid="d3e3263353894831b00faf650cd254f4" />
+    <T_RPLELETAG UUID="70b39f9e84ba4309ab4636da9cd2523e" requestNodeCode="xs004" requestNodeAddress="xs002"
+                 requestNodeType="DisplayTag" requestNodeUsage="RplRequest" responseNodeCode="xs003"
+                 responseNodeAddress="xs003" responseNodeType="DisplayTag" responseNodeUsage="RplResponse"
+                 sectionUuid="e6bc692202ac47a58f4b32da9e3a256e" />
+    <T_RPLELETAG UUID="cfcac2f3036f4ef78c069e0bf92812f0" requestNodeCode="3004" requestNodeAddress="3004"
+                 requestNodeType="DisplayTag" requestNodeUsage="RplRequest" responseNodeCode="4004"
+                 responseNodeAddress="4004" responseNodeType="DisplayTag" responseNodeUsage="RplResponse"
+                 sectionUuid="3c50ad638c354d99aec620694140eec4" />
+</dataset>

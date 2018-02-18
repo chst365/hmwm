@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_RPLELETAG UUID="0b7a702816334f44b6136fb0d2eacfed" requestNodeCode="xs006" requestNodeAddress="xs006"
+                 requestNodeType="DisplayTag" requestNodeUsage="RplRequest" responseNodeCode="xs007"
+                 responseNodeAddress="xs007" responseNodeType="DisplayTag" responseNodeUsage="RplResponse"
+                 sectionUuid="49c3f90163ca47d6824cfd432d196d20" />
+    <T_RPLELETAG UUID="536977f724384267bb69b36acceda7c2" requestNodeCode="string" requestNodeAddress="string"
+                 requestNodeType="PickTag" requestNodeUsage="PickDisplayQty" responseNodeCode="string"
+                 responseNodeAddress="string" responseNodeType="PickTag" responseNodeUsage="PickDisplayQty"
+                 sectionUuid="d3e3263353894831b00faf650cd254f4" />
+</dataset>

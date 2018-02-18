@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+  <property name="LOG_HOME" value="/logs/hmstore-web" />
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>%d{HH:mm:ss.SSS} %-5level %logger{80} - %msg%n</Pattern>
+    </encoder>
+  </appender>
+    <!-- 不同級別的文件記錄在不同的日誌文件中 -->
+  <appender name="FILEINFO"
+    class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/service/log-info.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <FileNamePattern>${LOG_HOME}/service/face-%d{yyyy-MM-dd}.%i.zip
+      </FileNamePattern>
+            <!-- 最多30个文件 -->
+      <MaxHistory>30</MaxHistory>
+      <TimeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <MaxFileSize>20MB</MaxFileSize>
+      </TimeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+      </pattern>
+    </layout>
+        <!-- 过滤器，只记录INFO级别的日志 -->
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>INFO</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+  </appender>
+
+  <appender name="FILEALL"
+    class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/debug/log-debug.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <FileNamePattern>${LOG_HOME}/debug/face-%d{yyyy-MM-dd}.%i.zip
+      </FileNamePattern>
+            <!-- 最多30个文件 -->
+      <MaxHistory>30</MaxHistory>
+      <TimeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <MaxFileSize>20MB</MaxFileSize>
+      </TimeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+      </pattern>
+    </layout>
+        <!-- 过滤器，只记录INFO级别的日志 -->
+  </appender>
+
+  <appender name="FILEERROR"
+    class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_HOME}/error/log-error.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <FileNamePattern>${LOG_HOME}/error/face-%d{yyyy-MM-dd}.%i.zip
+      </FileNamePattern>
+            <!-- 最多30个文件 -->
+      <MaxHistory>30</MaxHistory>
+      <TimeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <MaxFileSize>20MB</MaxFileSize>
+      </TimeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+      </pattern>
+    </layout>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>ERROR</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+  </appender>
+
+  <root>
+    <level value="DEBUG" />
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILEALL" />
+    <appender-ref ref="FILEINFO" />
+    <appender-ref ref="FILEERROR" />
+  </root>
+</configuration>

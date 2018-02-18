@@ -1,0 +1,84 @@
+<div class="wrapper-md" ng-controller="PickSchemeListController">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+          <ul class="nav nav-pills pull-right">
+            <li style=" padding-top:4px; padding-right:4px"><button class="btn m-b-xs btn-sm btn-success btn-addon" ui-sref="app.store.pickscheme.edit()"><i class="fa fa-plus"></i>新增</button></li>
+            <!--<li style=" padding-top:4px; padding-right:4px"><button class="btn m-b-xs btn-sm btn-default btn-addon" ng-click="import('lg')"><i class="fa fa-arrow-circle-down"></i>导入</button></li>-->
+        </ul>
+        拣货方案列表
+    </div>
+    <div class="row wrapper">
+      <div class="col-sm-9">
+      </div>
+      <div class="col-sm-3">
+        <div class="input-group"style="width:100%">
+          <input type="text" class="input-sm form-control" placeholder="搜索" ng-model="search_context" style="width:100%">
+          <!--<span class="input-group-btn">-->
+            <!--<button class="btn btn-sm btn-default" type="button" ng-click="search()">搜索</button>-->
+          <!--</span>-->
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped b-t b-light">
+        <thead>
+          <tr>
+            <!-- <th style="width:20px;">
+              <label class="i-checks m-b-none">
+                <input type="checkbox" ng-click="selectAll()"><i></i>
+              </label>
+            </th> -->
+            <th style="width:30px;">行</th>
+            <th>代码</th>
+            <th>名称</th>
+            <th>作业点</th>
+            <th>版本</th>
+            <th>状态</th>
+            <th>更新时间</th>
+            <th style="width:150px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="x in data.obj | filter:{code:search_context}">
+            <!-- <td><label class="i-checks m-b-none"><input type="checkbox" ng-model="data.selected"><i></i></label></td> -->
+            <td>{{ $index + 1 }}</td>
+            <td>{{x.code}}</td>
+            <td>{{x.name}}</td>
+            <td>{{x.jobPoint.name}}</td>
+            <td>{{x.version}}</td>
+            <td>
+              <span ng-switch on="x.state">
+                <span ng-switch-when="0" class="badge btn-success">使用中</span><!--Using-->
+                <span ng-switch-when="1" class="badge btn-danger">待生效</span><!--UnEffective-->
+              </span>
+            </td>
+            <td>{{x.versionTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td> <!--ui-sref="app.store.pickscheme.edit({uuid:x.uuid,code:x.code,name:x.name})"-->
+              <button class="btn btn-sm btn-icon btn-default" ng-click="toEdit(x.uuid,x.code,x.name)"><i class="fa fa-edit"></i></button>
+              <button class="btn btn-sm btn-icon btn-info" ng-show="x.state == '1'" ng-click="startEffective(x.uuid)"><i class="fa fa-gavel"></i></button>
+              <button class="btn btn-sm btn-icon btn-danger" ng-click="remove(x.uuid)"><i class="fa fa-remove"></i></button>
+
+
+              <!-- <a ui-sref="app.enterprise.edit({uuid:data.uuid})" class="active"><i class="fa fa-edit"></i></a>
+              <a ui-sref="app.enterprise.edit({uuid:data.uuid})" class="active"><i class="fa fa-remove"></i></a> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+        <div class="col-sm-8 text-left">
+          <small class="text-muted inline m-t-sm m-b-sm">{{search_context.length == null ? data.obj.length : (data.obj | filter:{code:search_context}).length}}条记录</small>
+        </div>
+        <div ng-if="data.page_count>1" class="col-sm-4 text-right text-center-xs">
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li ng-class="{disabled:!data.previous}"><a><i class="fa fa-chevron-left"></i></a></li>
+            <li ng-repeat="page in data.pages" ng-class="{active:page==data.page_index}"><a>{{page}}</a></li>
+            <li ng-class="{disabled:!data.next}"><a><i class="fa fa-chevron-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>

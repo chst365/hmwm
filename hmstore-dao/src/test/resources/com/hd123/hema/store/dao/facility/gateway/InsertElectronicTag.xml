@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_ELECTRONICTAG UUID="02125606ea4245c78455f62701eea072" nodeCode="zbdzbq" nodeAddress="zbdzbq"
+                     nodeType="PickTag" nodeUsage="PickDisplayQty" nodeState="Normal"
+                     gatewayUuid="22b2a451a58e4a658fe6a728dbc98ba1" checktime="2016-7-25 14:57:10" remark="pp"/>
+    <T_ELECTRONICTAG UUID="090f120ec5a04a6fb59fd05feaeaa6bb" nodeCode="总部电子标?" nodeAddress="总部电子标?"
+                     nodeType="PickTag" nodeUsage="PickDisplayQty" nodeState="Normal"
+                     gatewayUuid="f29d204986ad46149d29f1124629e872" checktime="2016-7-28 18:57:10" remark="None Msg"/>
+    <T_ELECTRONICTAG UUID="a7bca9f3e5e345b9be444b87fc464121" nodeCode="结点001" nodeAddress="结点001"
+                     nodeType="PickTag" nodeUsage="PickDisplayQty" nodeState="Normal"
+                     gatewayUuid="bfcc0e82ea5d43718934bacd88991f75" checktime="2016-8-4 9:30:52" remark="None"/>
+    <T_ELECTRONICTAG UUID="bfc42e1c52a84e45a447c893935a700e" nodeCode="Code004" nodeAddress="xs003"
+                     nodeType="PickTag" nodeUsage="CompleteInstruction" nodeState="Warning"
+                     gatewayUuid="2a375856ba7d4493a0253221605abd0e" checktime="2016-07-25 14:57:10" remark="None"/>
+</dataset>

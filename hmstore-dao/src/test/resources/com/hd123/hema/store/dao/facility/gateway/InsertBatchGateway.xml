@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_GATEWAY UUID="3ea794de5fda4373ad34c57f230b2172" code="Code001" ip="137.27.15.1"
+               port="8080" templateUuid="null" orgUuid="3c3494bcab0b4b17aaf4a3798d23ac9c"/>
+    <T_GATEWAY UUID="587f0bc087cb4defa48ae7f5da0506ce" code="Code002" ip="192.168.23.15"
+               port="21" templateUuid="null" orgUuid="2a375856ba7d4493a0253221605abd0e"/>
+    <T_GATEWAY UUID="b7f776582b634a2697ab186163251b63" code="Code003" ip="127.0.0.1"
+               port="1366" templateUuid="a6c48b0514234bf19614ef19cfc76c36" orgUuid="1a375856ba7d5493a0253221605abd0e"/>
+    <T_GATEWAY UUID="bfc42e1c52a84e45a447c893935a700e" code="Code004" ip="187.1.233.14"
+               port="8888" templateUuid="3c3494bcab0b4b17aaf4a3798d23ac9c" orgUuid="2a375856ba7d4493a0253221605abd0e"/>
+    <T_GATEWAY UUID="c0c1bfa9c2d04f528e45e614f7bc6a6c" code="Code005" ip="192.168.23.126"
+               port="12345" templateUuid="null" orgUuid="85a2f360ca2a427e84284b107e6ccf63"/>
+</dataset>

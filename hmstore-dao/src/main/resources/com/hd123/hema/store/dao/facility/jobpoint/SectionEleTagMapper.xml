@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hd123.hema.store.dao.facility.jobpoint.SectionEleTagDao">
+  <resultMap id="BaseResultMap" type="SectionEleTag">
+    <id column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="nodeCode" property="nodeCode" jdbcType="VARCHAR" />
+    <result column="nodeAddress" property="nodeAddress" jdbcType="VARCHAR" />
+    <result column="nodeType" property="nodeType" jdbcType="VARCHAR" />
+    <result column="nodeUsage" property="nodeUsage" jdbcType="VARCHAR" />
+    <result column="sectionUuid" property="sectionUuid" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="getByUuid" resultMap="BaseResultMap" parameterType="String">
+    select t.*
+    from t_sectioneletag t
+    where t.uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryByList" parameterType="QueryParam" resultMap="BaseResultMap">
+    select t.*
+    from t_sectioneletag t
+    where 1=1
+    <if test="sectionUuid != null and sectionUuid != ''">
+      and t.sectionUuid = #{sectionUuid,jdbcType=VARCHAR}
+    </if>
+    order by t.nodeCode
+  </select>
+
+  <select id="queryByPage" parameterType="PageQueryDefinition" resultMap="BaseResultMap">
+    select t.*
+    from t_sectioneletag t
+    where 1=1
+    <if test="sortField != null and sortField == 'nodeCode'">
+      order by t.nodeCode ${orderDir}
+    </if>
+  </select>
+
+  <insert id="insert" parameterType="SectionEleTag">
+    insert into
+    t_sectioneletag (
+      uuid,
+      nodeCode,
+      nodeAddress,
+      nodeType,
+      nodeUsage,
+      sectionUuid
+    ) values (
+      #{uuid,jdbcType=VARCHAR},
+      #{nodeCode,jdbcType=VARCHAR},
+      #{nodeAddress,jdbcType=VARCHAR},
+      #{nodeType,jdbcType=VARCHAR},
+      #{nodeUsage,jdbcType=VARCHAR},
+      #{sectionUuid,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into
+    t_sectioneletag (
+      uuid,
+      nodeCode,
+      nodeAddress,
+      nodeType,
+      nodeUsage,
+      sectionUuid
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+    (
+      #{item.uuid,jdbcType=VARCHAR},
+      #{item.nodeCode,jdbcType=VARCHAR},
+      #{item.nodeAddress,jdbcType=VARCHAR},
+      #{item.nodeType,jdbcType=VARCHAR},
+      #{item.nodeUsage,jdbcType=VARCHAR},
+      #{item.sectionUuid,jdbcType=VARCHAR}
+    )
+    </foreach>
+  </insert>
+
+  <update id="update" parameterType="SectionEleTag">
+    update t_sectioneletag
+    set
+      nodeCode = #{nodeCode,jdbcType=VARCHAR},
+      nodeAddress = #{nodeAddress,jdbcType=VARCHAR},
+      nodeType = #{nodeType,jdbcType=VARCHAR},
+      nodeUsage = #{nodeUsage,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="delete" parameterType="String">
+    delete from t_sectioneletag
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+
+  <delete id="deleteBySection" parameterType="String">
+    delete from t_sectioneletag
+    where sectionUuid = #{sectionUuid,jdbcType=VARCHAR}
+  </delete>
+</mapper>

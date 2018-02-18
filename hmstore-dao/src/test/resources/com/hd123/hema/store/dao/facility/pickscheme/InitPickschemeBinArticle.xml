@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_PICKSCHEMEBINARTICLE UUID="02ac2f3b4ba94c66815cb3cd00f7f676" binCode="erger" articleUuid="655f6b2bfc364aa991d52dc627743fde"
+                            articleCode="A002" articleName="Spring源码深度解析" pickSchemeUuid="e9e8d111a89840cf822b8094591ab01f"/>
+    <T_PICKSCHEMEBINARTICLE UUID="02bdbeff95f24fcdba6348dfa8bbc460" binCode="string" articleUuid="3a901a7afe694f4e875b712511921b96"
+                            articleCode="x002" articleName="红烧臭桂鱼" pickSchemeUuid="d9fbe3d283d64b10bb6985090b083628"/>
+</dataset>

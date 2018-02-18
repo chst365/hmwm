@@ -1,0 +1,22 @@
+{
+	"previous": false,
+	"next": true,
+	"total_count": 2,
+	"page_count": 1,
+	"results": [
+		{
+			"uuid": "1",
+			"name": "控制电脑+数据库",
+			"ip": "192.168.0.1",
+			"mac": "00:00:00:00:00",
+			"allowAPI": true
+		},
+		{
+			"uuid": "2",
+			"name": "控制电脑",
+			"ip": "192.168.0.2",
+			"mac": "00:00:00:00:00",
+			"allowAPI": false
+		}
+	] 
+}
